@@ -7,7 +7,7 @@
 #CREATE CLASS
 class Shop
   def listAll(con,client)
-    results= con.query("SELECTXX * FROM magazzino_scorza.prodotti")
+    results= con.query("SELECT * FROM magazzino_scorza.prodotti")
     puts results
     results.each do |results|
       client.puts results.to_json
