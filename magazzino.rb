@@ -8,10 +8,19 @@ require 'mysql2'
 load 'Classes.rb'
 
 
+
+
 #CONNECTION WITH MYSQL AND CLIENT
 con = Mysql2::Client.new(:host => "localhost", :username => "root", :password => "yesyesyes")
-server = TCPServer.open('localhost',2000)
 
+
+#defines
+localDbServer= 'localhost'
+localport=2000
+
+#server = TCPServer.open(localDbServer,localport)
+
+server = TCPServer.new 2000
 
 #INSTANCE CLASS
 c= Shop .new
@@ -27,7 +36,7 @@ loop {
   readString= client.read
   string = JSON.parse(readString)
 
-
+puts readString
 
   #ALL VARIABLES
   command= string["command"]
