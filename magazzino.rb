@@ -21,7 +21,7 @@ localport=2000
 #server = TCPServer.open(localDbServer,localport)
 
 server = TCPServer.new 2000
-
+# JSON.parse(string) Method
 #INSTANCE CLASS
 c= Shop .new
 
@@ -29,14 +29,39 @@ loop {
 
   #CONNECT TO THE CLIENT
   client = server.accept
+
 #client.puts(Time.now.ctime)
+ # client.puts(Time.now.ctime+'rubyAllright')                                 # Send the time to the client
+# JSON.parse(string) Method
 
 
   #TAKE STRING FROM THE CLIENT AND PARSE
   readString= client.read
-  string = JSON.parse(readString)
+  puts readString
 
-puts readString
+  begin
+    string = JSON.parse(readString)
+    analyse(string,c,con,client)
+
+  rescue JSON::ParserError => e
+    client.puts "{\"error\":\"parsejson\"}"
+
+  end
+
+
+
+
+
+
+  #CLOSE connection
+  client.puts "closing connection..."
+  client.close
+
+}
+def analyse(string,c,con,client)
+
+  puts "here"
+  puts string
 
   #ALL VARIABLES
   command= string["command"]
@@ -51,6 +76,7 @@ puts readString
 
   #SWITCH CASE
   case command
+
     when "list"
       c.listAll(con,client)
     when "insert"
@@ -63,13 +89,8 @@ puts readString
       c.deleteProduct(con,client,barcode)
     when "changePrice"
       c.changePrice(con,client,barcode,price)
+    else
+      client.puts "commmand not implemented"
   end
 
-
-
-
-  #CLOSE connection
-  client.puts "closing connection..."
-  client.close
-
-}
+end
