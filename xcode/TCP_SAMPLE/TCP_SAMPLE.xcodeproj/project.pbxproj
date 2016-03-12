@@ -26,10 +26,6 @@
 		AAD4A1501C941EBA009F9B00 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		AAD4A1531C941EBA009F9B00 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		AAD4A1551C941EBA009F9B00 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		AAD4A15E1C941EBA009F9B00 /* TCP_SAMPLETests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TCP_SAMPLETests.m; sourceTree = "<group>"; };
-		AAD4A1601C941EBA009F9B00 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		AAD4A1691C941EBA009F9B00 /* TCP_SAMPLEUITests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TCP_SAMPLEUITests.m; sourceTree = "<group>"; };
-		AAD4A16B1C941EBA009F9B00 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -47,8 +43,6 @@
 			isa = PBXGroup;
 			children = (
 				AAD4A1431C941EBA009F9B00 /* TCP_SAMPLE */,
-				AAD4A15D1C941EBA009F9B00 /* TCP_SAMPLETests */,
-				AAD4A1681C941EBA009F9B00 /* TCP_SAMPLEUITests */,
 				AAD4A1421C941EBA009F9B00 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -83,24 +77,6 @@
 				AAD4A1451C941EBA009F9B00 /* main.m */,
 			);
 			name = "Supporting Files";
-			sourceTree = "<group>";
-		};
-		AAD4A15D1C941EBA009F9B00 /* TCP_SAMPLETests */ = {
-			isa = PBXGroup;
-			children = (
-				AAD4A15E1C941EBA009F9B00 /* TCP_SAMPLETests.m */,
-				AAD4A1601C941EBA009F9B00 /* Info.plist */,
-			);
-			path = TCP_SAMPLETests;
-			sourceTree = "<group>";
-		};
-		AAD4A1681C941EBA009F9B00 /* TCP_SAMPLEUITests */ = {
-			isa = PBXGroup;
-			children = (
-				AAD4A1691C941EBA009F9B00 /* TCP_SAMPLEUITests.m */,
-				AAD4A16B1C941EBA009F9B00 /* Info.plist */,
-			);
-			path = TCP_SAMPLEUITests;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -323,6 +299,7 @@
 				AAD4A1701C941EBA009F9B00 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
