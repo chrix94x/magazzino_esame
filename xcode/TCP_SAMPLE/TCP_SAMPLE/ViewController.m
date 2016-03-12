@@ -10,6 +10,7 @@
 
 
 #define HOST @"localhost"
+//#define HOST @"192.168.2.5"
 #define PORT 2000
 
 @interface ViewController () <NSStreamDelegate>
@@ -60,8 +61,8 @@
     
     NSString *response  = [NSString stringWithFormat:@"{ \"command\": \"list\",  \"description\": \"testOne\",  \"quantity\": \"20\",\"price\":\"10\"}"];
     NSData *data = [[NSData alloc] initWithData:[response dataUsingEncoding:NSASCIIStringEncoding]];
-    [self.outputStream write:[data bytes] maxLength:[data length]];
-    
+    NSInteger written = [self.outputStream write:[data bytes] maxLength:[data length]];
+
 }
 
 
