@@ -9,8 +9,8 @@
 #import "ViewController.h"
 
 
-#define HOST @"localhost"
-//#define HOST @"192.168.2.5"
+//#define HOST @"localhost"
+#define HOST @"192.168.2.5"
 #define PORT 2000
 
 @interface ViewController () <NSStreamDelegate>
@@ -27,7 +27,7 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view, typically from a nib.
     
-    [self initNetworkCommunication];
+    // [self initNetworkCommunication];
 }
 
 
@@ -48,19 +48,49 @@
     
     [self.inputStream open];
     [self.outputStream open];
-    
-    // TODO: close when exiting...
-    
+	
 }
 
+
+-(void)closeAllSockets
+{
+	if (self.inputStream != nil){
+		
+		[self.inputStream close];
+		[self.inputStream removeFromRunLoop:[NSRunLoop currentRunLoop] forMode:NSDefaultRunLoopMode];
+		self.inputStream = nil;
+	}
+	
+	if (self.outputStream != nil){
+		[self.outputStream close];
+		[self.outputStream removeFromRunLoop:[NSRunLoop currentRunLoop] forMode:NSDefaultRunLoopMode];
+		self.outputStream = nil;
+	}
+
+}
+
+
+-(void)closeAllSocketsOnMainThread
+{
+	dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.5 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+		
+		[self closeAllSockets];
+		
+	});
+	
+}
 
 //send text
 
 
 - (IBAction)sendSampleText:(UIButton *)sender {
     
-    NSString *response  = [NSString stringWithFormat:@"{ \"command\": \"list\",  \"description\": \"testOne\",  \"quantity\": \"20\",\"price\":\"10\"}"];
+//	NSString *response  = [NSString stringWithFormat:@"{ \"command\": \"list\",  \"description\": \"testOne\",  \"quantity\": \"20\",\"price\":\"10\"}"];
+	NSString *response  = [[NSDate date] description];
     NSData *data = [[NSData alloc] initWithData:[response dataUsingEncoding:NSASCIIStringEncoding]];
+	
+	[self initNetworkCommunication];
+	
     NSInteger written = [self.outputStream write:[data bytes] maxLength:[data length]];
 
 }
@@ -92,6 +122,7 @@
             break;
             
         case NSStreamEventEndEncountered:
+			[self closeAllSocketsOnMainThread];
             break;
             
         default:
@@ -101,24 +132,26 @@
 
 
 -(void)processResponse{
-    
-    uint8_t buffer[1024];
-				NSInteger len;
-				
-				while ([self.inputStream hasBytesAvailable]) {
-                    len = [self.inputStream read:buffer maxLength:sizeof(buffer)];
-                    if (len > 0) {
-                        
-                        NSString *output = [[NSString alloc] initWithBytes:buffer length:len encoding:NSASCIIStringEncoding];
-                        
-                        if (nil != output) {
-                            // NSLog(@"server said: %@", output);
-                            NSLog(@"\n%@", output);
-                        }
-                        
-                        
-                    }
-                }
+	
+	uint8_t buffer[1024 * 128];
+	NSInteger len;
+	
+	while ([self.inputStream hasBytesAvailable])
+	{
+		len = [self.inputStream read:buffer maxLength:sizeof(buffer)];
+		if (len > 0) {
+			
+			NSString *output = [[NSString alloc] initWithBytes:buffer length:len encoding:NSASCIIStringEncoding];
+			
+			if (nil != output) {
+				// NSLog(@"server said: %@", output);
+				NSLog(@"\n%@", output);
+			}
+		}
+	}
+	
+		[self closeAllSocketsOnMainThread];
+		
 }
 
 
