@@ -28,6 +28,7 @@ client.puts(Time.now.ctime)
   string = JSON.parse(readString)
 
 
+
   #ALL VARIABLES
   command= string["command"]
   description=string["description"]
