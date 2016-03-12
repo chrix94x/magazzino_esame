@@ -1,3 +1,4 @@
+// to be run on shell
 
 echo -en '{ "command": "insert",  "description": "testOne",  "quantity": "20","price":"10"}' | nc localhost  2000
 echo -en '{ "command": "list",  "description": "testOne",  "quantity": "20","price":"10"}' | nc localhost  2000
