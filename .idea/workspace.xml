@@ -1,11 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="483fa326-3ac3-48a3-b9cb-e5d296081231" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/vcs.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/examples_shell" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-    </list>
+    <list default="true" id="483fa326-3ac3-48a3-b9cb-e5d296081231" name="Default" comment="" />
     <ignored path="untitled1.iws" />
     <ignored path=".idea/workspace.xml" />
     <ignored path=".idea/dataSources.local.xml" />
@@ -53,8 +49,8 @@
       <file leaf-file-name="examples_shell" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/examples_shell">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.3966346">
-              <caret line="11" column="0" selection-start-line="11" selection-start-column="0" selection-end-line="11" selection-end-column="0" />
+            <state vertical-scroll-proportion="0.32451922">
+              <caret line="9" column="0" selection-start-line="9" selection-start-column="0" selection-end-line="9" selection-end-column="0" />
               <folding />
             </state>
           </provider>
@@ -427,7 +423,13 @@
       <option name="project" value="LOCAL" />
       <updated>1457775537658</updated>
     </task>
-    <option name="localTasksCounter" value="2" />
+    <task id="LOCAL-00002" summary="added example shell&#10;">
+      <created>1457775696768</created>
+      <option name="number" value="00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1457775696768</updated>
+    </task>
+    <option name="localTasksCounter" value="3" />
     <servers />
   </component>
   <component name="TodoView">
@@ -476,7 +478,8 @@
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="minor fixes" />
-    <option name="LAST_COMMIT_MESSAGE" value="minor fixes" />
+    <MESSAGE value="added example shell&#10;" />
+    <option name="LAST_COMMIT_MESSAGE" value="added example shell&#10;" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -743,8 +746,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/examples_shell">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.3966346">
-          <caret line="11" column="0" selection-start-line="11" selection-start-column="0" selection-end-line="11" selection-end-column="0" />
+        <state vertical-scroll-proportion="0.32451922">
+          <caret line="9" column="0" selection-start-line="9" selection-start-column="0" selection-end-line="9" selection-end-column="0" />
           <folding />
         </state>
       </provider>
