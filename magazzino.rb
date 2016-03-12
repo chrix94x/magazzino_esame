@@ -20,7 +20,7 @@ loop {
 
   #CONNECT TO THE CLIENT
   client = server.accept
-client.puts(Time.now.ctime)
+#client.puts(Time.now.ctime)
 
 
   #TAKE STRING FROM THE CLIENT AND PARSE
