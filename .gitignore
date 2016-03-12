@@ -1,0 +1,29 @@
+# Mac OS X Finder and whatnot
+.DS_Store
+.com.apple.timemachine.supported
+
+# XCode
+*.mode1
+*.mode1v3
+*.mode2v3
+*.perspective
+*.perspectivev3
+*.pbxuser
+*.xcworkspace
+*.xcbkptlist
+*.xccheckout
+*.xcuserstate
+*.xcsettings
+
+xcuserdata
+
+# Generated files
+VersionX-revision.h
+
+# build products
+build/
+
+# Other source repository archive directories (protects when importing)
+.hg
+.svn
+CVS
