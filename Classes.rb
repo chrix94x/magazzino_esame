@@ -13,6 +13,8 @@ class Shop
     puts e.errno
     puts e.error.to_json
 
+#err= e.errno  err2=e.error client.puts err.to_json   err2.to_json
+
     puts "'-------"
 
 
