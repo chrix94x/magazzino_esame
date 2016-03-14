@@ -7,7 +7,7 @@
 #CREATE CLASS
 class Shop
   def listAll(con,client)
-    results= con.query("SELECTER * FROM magazzino_scorza.prodotti")
+    results= con.query("SELECTer * FROM magazzino_scorza.prodotti")
     puts results
     results.each do |results|
       client.puts results.to_json
@@ -79,7 +79,6 @@ end
 
 def analyse(string,c,con,client)
 
-  puts "here"
   puts string
 
   #ALL VARIABLES

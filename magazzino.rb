@@ -24,6 +24,7 @@ con = Mysql2::Client.new(:host => "localhost", :username => "root", :password =>
 server = TCPServer.new 2000
 # JSON.parse(string) Method
 #INSTANCE CLASS
+
 c= Shop .new
 
 loop {
@@ -31,32 +32,47 @@ loop {
   #CONNECT TO THE CLIENT
 
   client = server.accept
+  client.puts(Time.now.ctime+'rubyAllright')
+
+  client.puts("server message i love u ")
+
+
 
 #client.puts(Time.now.ctime)
 # client.puts(Time.now.ctime+'rubyAllright')                                 # Send the time to the client
 # JSON.parse(string) Method
 
+#TAKE STRING FROM THE CLIENT AND PARSE
 
-  #TAKE STRING FROM THE CLIENT AND PARSE
+
   readString= client.read
-  puts readString
-
-begin
-    string = JSON.parse(readString)
-    analyse(string,c,con,client)
-
-  #rescue JSON::ParserError => e
-  # client.puts "{\"error\":\"parsejson\"}"
-  # sendError(client,e)
-
-end
 
 
+  #puts readString
+ # JSON.parse([ 'foo' ].to_json).first
+
+
+    begin
+      string = JSON.parse(readString)
+      analyse(string,c,con,client)
+      rescue JSON::ParserError => e
+      client.puts "{\"error\":\"parsejson\"}"
+     # sendError(client,e)
+
+    end
 
 
 
-  #CLOSE connection
-  client.puts "closing connection..."
+
+
+
+
+
   client.close
+
+
+
+
+
 
 }

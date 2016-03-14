@@ -9,8 +9,8 @@
 #import "ViewController.h"
 
 
-//#define HOST @"localhost"
-#define HOST @"192.168.2.5"
+#define HOST @"localhost"
+//#define HOST @"192.168.2.5"
 #define PORT 2000
 
 @interface ViewController () <NSStreamDelegate>
@@ -85,13 +85,14 @@
 
 - (IBAction)sendSampleText:(UIButton *)sender {
     
-//	NSString *response  = [NSString stringWithFormat:@"{ \"command\": \"list\",  \"description\": \"testOne\",  \"quantity\": \"20\",\"price\":\"10\"}"];
-	NSString *response  = [[NSDate date] description];
+NSString *response  = [NSString stringWithFormat:@"{ \"command\": \"list\",  \"description\": \"testOne\",  \"quantity\": \"20\",\"price\":\"10\"}"];
+  //  NSString *response = [NSString stringWithFormat:@"ciaomamma guarda"];
+// NSString *response  = [[NSDate date] description];
     NSData *data = [[NSData alloc] initWithData:[response dataUsingEncoding:NSASCIIStringEncoding]];
 	
 	[self initNetworkCommunication];
-	
-    NSInteger written = [self.outputStream write:[data bytes] maxLength:[data length]];
+//    NSInteger written =
+[self.outputStream write:[data bytes] maxLength:[data length]];
 
 }
 
@@ -125,8 +126,8 @@
 			[self closeAllSocketsOnMainThread];
             break;
             
-        default:
-            NSLog(@"Unknown event");
+       default:
+           NSLog(@"Unknown event");
     }
 }
 
@@ -146,6 +147,8 @@
 			if (nil != output) {
 				// NSLog(@"server said: %@", output);
 				NSLog(@"\n%@", output);
+              
+
 			}
 		}
 	}
