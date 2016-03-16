@@ -7,7 +7,7 @@
 #CREATE CLASS
 class Shop
   def listAll(con,client)
-    results= con.query("SELECT * FROM magazzino_scorza.prodotti")
+    results= con.query("SELECTer * FROM magazzino_scorza.prodotti")
     puts results
     results.each do |results|
       client.puts results.to_json
@@ -66,15 +66,53 @@ end
 
 
 
-
+#send error in json to client
 
 def sendError(client,e)
-  #puts e.errno
-  #puts e.error.to_json
   h = Hash["errno" => e.errno, "error" => e.error]
   client.puts h.to_json
+end
+
+
+
+#parse json and call the class for the queries
+
+def analyse(string,c,con,client)
+
+  puts string
+
+  #ALL VARIABLES
+  command= string["command"]
+  description=string["description"]
+  quantity=string["quantity"]
+  price= string["price"]
+  color= string["color"]
+  brand= string["brand"]
+  model= string["model"]
+  barcode=string["barcode"]
+
+
+  #SWITCH CASE
+  case command
+
+    when "list"
+      c.listAll(con,client)
+    when "insert"
+      c.insert(con,client,description,quantity,price,color,brand,model,barcode)
+    when "remove" #decrementQuantity
+      c.remove(con,client,barcode)
+    when "removeAll" #clearQuantity
+      c.removeAll(con,client,barcode)
+    when "delete"
+      c.deleteProduct(con,client,barcode)
+    when "changePrice"
+      c.changePrice(con,client,barcode,price)
+    else
+      client.puts "commmand not implemented"
+  end
 
 end
+
 
 
 #results= con.query("SELECT * FROM magazzino_scorza.prodotti")

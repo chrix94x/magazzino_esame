@@ -8,15 +8,25 @@ require 'json'
 
 server = TCPServer.new 2000
 
-loop {                                                    # Servers run forever
+loop {
+
+
+# Servers run forever
+
   client = server.accept                                 #     Wait for a client to connect
+
   client.puts(Time.now.ctime+'rubyAllright')                                 # Send the time to the client
- # JSON.parse(string) Method
+
+  # JSON.parse(string) Method
 
 
- readString= client.read
+  readString= client.read
 
   puts readString
+
+
+  client.puts("Closing the connection. Bye!")
+  client.close
 
 #  string=JSON.parse(readString)
 
@@ -40,10 +50,7 @@ loop {                                                    # Servers run forever
  # puts "this is the sum:\n ",sum
 
 
-
-
-  client.puts "Closing the connection. Bye!"
-  client.close                                              # Disconnect from the client
+                                         # Disconnect from the client
 
 }
 
