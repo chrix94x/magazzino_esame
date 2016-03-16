@@ -11,7 +11,9 @@
 
 //#define HOST @"localhost"
 #define HOST @"192.168.2.5"
+//#define HOST @"104.106.82.112"	// apple
 #define PORT 2000
+//#define PORT 80
 
 @interface ViewController () <NSStreamDelegate>
 
