@@ -10,7 +10,9 @@
 
 
 #define HOST @"localhost"
+
 //#define HOST @"192.168.2.5"
+
 #define PORT 2000
 
 @interface ViewController () <NSStreamDelegate>
@@ -91,8 +93,7 @@ NSString *response  = [NSString stringWithFormat:@"{ \"command\": \"list\",  \"d
     NSData *data = [[NSData alloc] initWithData:[response dataUsingEncoding:NSASCIIStringEncoding]];
 	
 	[self initNetworkCommunication];
-//    NSInteger written =
-[self.outputStream write:[data bytes] maxLength:[data length]];
+   NSInteger written = [self.outputStream write:[data bytes] maxLength:[data length]];
 
 }
 
@@ -102,7 +103,7 @@ NSString *response  = [NSString stringWithFormat:@"{ \"command\": \"list\",  \"d
 
 
 - (void)stream:(NSStream *)theStream handleEvent:(NSStreamEvent)streamEvent {
-    // NSLog(@"stream event %lu", (unsigned long)streamEvent);
+     NSLog(@"stream event %lu", (unsigned long)streamEvent);
     
     
     switch (streamEvent) {

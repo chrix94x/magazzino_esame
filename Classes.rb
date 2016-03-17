@@ -79,7 +79,7 @@ end
 
 def analyse(string,c,con,client)
 
-  puts string
+ # puts string
 
   #ALL VARIABLES
   command= string["command"]
