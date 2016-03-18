@@ -10,7 +10,11 @@
 
 
 
+<<<<<<< HEAD
 //#define HOST @"localhost"
+=======
+#define HOST @"localhost"
+>>>>>>> 7f34c4f8c0231a63153e573152b88b325bdd676d
 //#define HOST @"192.168.2.5"
 //#define HOST @"104.106.82.112"	// apple
 #define HOST @"77.93.255.134"
