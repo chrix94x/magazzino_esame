@@ -13,6 +13,7 @@
 		AAD4A14F1C941EBA009F9B00 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AAD4A14D1C941EBA009F9B00 /* Main.storyboard */; };
 		AAD4A1511C941EBA009F9B00 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = AAD4A1501C941EBA009F9B00 /* Assets.xcassets */; };
 		AAD4A1541C941EBA009F9B00 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AAD4A1521C941EBA009F9B00 /* LaunchScreen.storyboard */; };
+		CE98D0D11C99ABB6000F0774 /* releaseNotes.rtf in Resources */ = {isa = PBXBuildFile; fileRef = CE98D0D01C99ABB6000F0774 /* releaseNotes.rtf */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -26,6 +27,7 @@
 		AAD4A1501C941EBA009F9B00 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		AAD4A1531C941EBA009F9B00 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		AAD4A1551C941EBA009F9B00 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		CE98D0D01C99ABB6000F0774 /* releaseNotes.rtf */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.rtf; path = releaseNotes.rtf; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -42,6 +44,7 @@
 		AAD4A1381C941EBA009F9B00 = {
 			isa = PBXGroup;
 			children = (
+				CE98D0D01C99ABB6000F0774 /* releaseNotes.rtf */,
 				AAD4A1431C941EBA009F9B00 /* TCP_SAMPLE */,
 				AAD4A1421C941EBA009F9B00 /* Products */,
 			);
@@ -137,6 +140,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				CE98D0D11C99ABB6000F0774 /* releaseNotes.rtf in Resources */,
 				AAD4A1541C941EBA009F9B00 /* LaunchScreen.storyboard in Resources */,
 				AAD4A1511C941EBA009F9B00 /* Assets.xcassets in Resources */,
 				AAD4A14F1C941EBA009F9B00 /* Main.storyboard in Resources */,

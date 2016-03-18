@@ -1,19 +1,12 @@
-require 'socket'                                         # Sockets are in standard library
 
-hostname = 'localhost'
-port = 80
+require "socket"
 
-s = TCPSocket.open(hostname, port)
+port = 2000
+server = "77.93.255.134"
+#server = "localhost"
 
-  while line = s.gets                                    # Read lines from the socket
-  puts line.chop                                      # And print with platform line terminator
-  end
-
-server.puts "hello"
-
-
-
-
-
-
-
+s = TCPSocket.open(server, port)
+while line = s.gets
+	puts "received : #{line.chop}"
+end
+s.close

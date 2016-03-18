@@ -37,15 +37,10 @@ loop {
   client.puts("server message i love u ")
 
 
-
-#client.puts(Time.now.ctime)
-# client.puts(Time.now.ctime+'rubyAllright')                                 # Send the time to the client
-# JSON.parse(string) Method
-
-#TAKE STRING FROM THE CLIENT AND PARSE
+	#TAKE STRING FROM THE CLIENT AND PARSE
 
 
-  readString= client.read
+  readString = client.read
 
 
   #puts readString

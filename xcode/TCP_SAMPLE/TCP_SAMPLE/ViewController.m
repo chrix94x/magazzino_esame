@@ -11,12 +11,13 @@
 
 
 //#define HOST @"localhost"
-#define HOST @"192.168.2.5"
-//#define HOST @"104.106.82.112"	// apple
-
 //#define HOST @"192.168.2.5"
+//#define HOST @"104.106.82.112"	// apple
+#define HOST @"77.93.255.134"
+
 #define PORT 2000
 //#define PORT 80
+
 
 @interface ViewController () <NSStreamDelegate>
 
@@ -33,6 +34,11 @@
     // Do any additional setup after loading the view, typically from a nib.
     
     // [self initNetworkCommunication];
+	
+	dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.5 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+		
+		[self sendSampleText: nil];
+	});
 }
 
 
@@ -89,16 +95,20 @@
 
 
 - (IBAction)sendSampleText:(UIButton *)sender {
-    
-NSString *response  = [NSString stringWithFormat:@"{ \"command\": \"list\",  \"description\": \"testOne\",  \"quantity\": \"20\",\"price\":\"10\"}"];
-  //  NSString *response = [NSString stringWithFormat:@"ciaomamma guarda"];
-// NSString *response  = [[NSDate date] description];
-    NSData *data = [[NSData alloc] initWithData:[response dataUsingEncoding:NSASCIIStringEncoding]];
+
+
+	NSString *response  = [NSString stringWithFormat:@"{ \"command\": \"list\",  \"description\": \"testOne\",  \"quantity\": \"20\",\"price\":\"10\"}\r\n"];
+//    NSString *response = [NSString stringWithFormat:@"ciaomamma guarda"];
+
+	// NSString *response  = [[NSDate date] description];
+	
+	NSData *data = [[NSData alloc] initWithData:[response dataUsingEncoding:NSASCIIStringEncoding]];
 	
 	[self initNetworkCommunication];
-//    NSInteger written =
-[self.outputStream write:[data bytes] maxLength:[data length]];
+    NSInteger written = [self.outputStream write:[data bytes] maxLength:[data length]];
 
+	printf("written %d", (int)written);
+	
 }
 
 
