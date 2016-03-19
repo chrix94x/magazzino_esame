@@ -8,7 +8,7 @@ require 'socket'
 
 
 def processStr(readString)
-#puts readString
+puts "it is entered in processStr  function"
 begin
 	data = JSON.parse(readString)
 	puts data
@@ -16,6 +16,7 @@ begin
 	 #ALL VARIABLES
  	command = data["command"]
  
+	puts "this is the command"
 	puts command
 	#	analyse(string,c,con,client)
 	rescue JSON::ParserError => e
@@ -38,14 +39,15 @@ loop do
 
 		#puts "from  #{remote_ip} port: #{remote_port}"
 		puts "Thread ID: #{my_thread_id} - Time is #{Time.now}\n"
-
+    client.puts "message sent success!! -from Server- "
 		#readString = client.read ## not ok, as it waits till the buffer is full.
-		readString = client.readline ## wait cr/lf
+
+    readString = client.read ## wait cr/lf
 
 		#puts readString.length
-		#puts readString
-		processStr(readString)
-		
+		puts readString + "\n\n"
+    processStr(readString)
+
 		client.close
 	end
 end

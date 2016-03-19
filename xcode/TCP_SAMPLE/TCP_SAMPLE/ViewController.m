@@ -10,14 +10,15 @@
 
 
 
-<<<<<<< HEAD
+//<<<<<<< HEAD
 //#define HOST @"localhost"
-=======
+//=======
+//#define HOST @"localhost"
+//>>>>>>> 7f34c4f8c0231a63153e573152b88b325bdd676d
 #define HOST @"localhost"
->>>>>>> 7f34c4f8c0231a63153e573152b88b325bdd676d
 //#define HOST @"192.168.2.5"
 //#define HOST @"104.106.82.112"	// apple
-#define HOST @"77.93.255.134"
+//#define HOST @"77.93.255.134"
 
 #define PORT 2000
 //#define PORT 80
@@ -109,8 +110,10 @@
 	NSData *data = [[NSData alloc] initWithData:[response dataUsingEncoding:NSASCIIStringEncoding]];
 	
 	[self initNetworkCommunication];
+    
     NSInteger written = [self.outputStream write:[data bytes] maxLength:[data length]];
-
+    
+    
 	printf("written %d", (int)written);
 	
 }
@@ -145,8 +148,8 @@
 			[self closeAllSocketsOnMainThread];
             break;
             
-       default:
-           NSLog(@"Unknown event");
+      // default:
+        //   NSLog(@"Unknown event");
     }
 }
 
