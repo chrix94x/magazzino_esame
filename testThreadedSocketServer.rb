@@ -15,7 +15,9 @@ begin
 	
 	 #ALL VARIABLES
  	command = data["command"]
- 
+
+	#changesssss
+
 	puts "this is the command"
 	puts command
 	#	analyse(string,c,con,client)
