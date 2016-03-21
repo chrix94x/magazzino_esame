@@ -7,14 +7,23 @@
 #CREATE CLASS
 class Shop
   def listAll(con,client)
-    client.puts "start the select!!"
     puts "start the select"
-    results= con.query("SELECT * FROM magazzino_scorza.prodotti")
-    puts results
+    results = con.query("SELECT * FROM magazzino_scorza.prodotti")
+
+    count = 0
+
     results.each do |results|
+
+      count = count + 1
+
       puts results.to_json
       #ios block here WHY?? maybe doesn't accept other puts...
-      client.puts results.to_json
+
+      #client.puts results.to_json
+
+      msg = " #{count}\n"
+
+      client.puts msg
 
     end
   rescue Mysql2::Error => e
@@ -96,8 +105,8 @@ def analyse(string,c,con,client)
   model = string["model"]
   barcode = string["barcode"]
 
-puts "\n this is the command \n"
-puts command
+#puts "\n this is the command \n"
+#puts command
 
   #SWITCH CASE
   case command
@@ -123,15 +132,16 @@ end
 
 
 def processStr(readString,con,client)
+
   puts "it is entered in processStr  function"
+
   begin
     # parse json
     data = JSON.parse(readString)
     puts data
 
-    command=data["commmand"]
-    puts "this is the command"
-    puts command
+    command = data["command"]
+    puts "this is the command " + command
     # create the obj used in switch
 
     queryObject= Shop .new

@@ -19,22 +19,18 @@ server = TCPServer.new port
 
 
 
-# STAR THE LOOP
+# START THE LOOP
 loop do
   Thread.start(server.accept) do |client|
     my_thread_id = Thread.current.object_id
     sock_domain, remote_port, remote_hostname, remote_ip = client.peeraddr
    # puts "from  #{remote_ip} port: #{remote_port}"
     puts "Thread ID: #{my_thread_id} - Time is #{Time.now}\n"
-    client.puts "message sent success!! -from Server- "
+    client.puts "connected"
     #take the json
     readString = client.read ## wait cr/lf
 
     puts readString
-
-  #client.puts "hello it's me"
-    #puts readString.length
-    puts readString + "\n\n"
     processStr(readString,con,client)
 
     client.close
