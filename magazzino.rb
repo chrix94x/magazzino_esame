@@ -3,64 +3,45 @@ require 'socket'
 require 'rubygems'
 require 'json'
 require 'mysql2'
-
-#myFiles
+# MY FILES
 load 'Classes.rb'
 
+
 #CONNECTION WITH MYSQL AND CLIENT
+
 con = Mysql2::Client.new(:host => "localhost", :username => "root", :password => "yesyesyes")
 
-
-#variables for connection
-
-#localDbServer= 'localhost'
-#localport=2000
-
-#server = TCPServer.open(localDbServer,localport)
-
-server = TCPServer.new 2000
-
-#INSTANCE CLASS
-
-queryObject= Shop .new
-
-loop {
+port = 2000
+server = TCPServer.new port
 
 
-  #CONNECT TO THE CLIENT
-
-  client = server.accept
-
-  #client.puts(Time.now.ctime+'rubyAllright')
-
-<<<<<<< HEAD
-	#TAKE STRING FROM THE CLIENT AND PARSE
 
 
-  readString = client.read
 
 
-  #puts readString
- # JSON.parse([ 'foo' ].to_json).first
+# STAR THE LOOP
+loop do
+  Thread.start(server.accept) do |client|
+    my_thread_id = Thread.current.object_id
+    sock_domain, remote_port, remote_hostname, remote_ip = client.peeraddr
+   # puts "from  #{remote_ip} port: #{remote_port}"
+    puts "Thread ID: #{my_thread_id} - Time is #{Time.now}\n"
+    client.puts "message sent success!! -from Server- "
+    #take the json
+    readString = client.read ## wait cr/lf
+
+    puts readString
+
+  #client.puts "hello it's me"
+    #puts readString.length
+    puts readString + "\n\n"
+    processStr(readString,con,client)
+
+    client.close
+  end
+  end
 
 
-=======
 
-#TAKE STRING FROM THE CLIENT AND PARSE
-
-
-  readString= client.read
-  puts "\n client message:\n\n "+ readString
->>>>>>> 7f34c4f8c0231a63153e573152b88b325bdd676d
-    begin
-      string = JSON.parse(readString)
-      analyse(string,queryObject,con,client)
-      rescue JSON::ParserError => e
-      client.puts "{\"error\":\"parsejson\"}"
-     # sendError(client,e)
-
-    end
 
   client.close
-
-}

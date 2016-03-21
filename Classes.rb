@@ -7,11 +7,15 @@
 #CREATE CLASS
 class Shop
   def listAll(con,client)
-    results= con.query("SELECTer * FROM magazzino_scorza.prodotti")
+    client.puts "start the select!!"
+    puts "start the select"
+    results= con.query("SELECT * FROM magazzino_scorza.prodotti")
     puts results
     results.each do |results|
-      client.puts results.to_json
       puts results.to_json
+      #ios block here WHY?? maybe doesn't accept other puts...
+      client.puts results.to_json
+
     end
   rescue Mysql2::Error => e
   sendError(client,e)
@@ -69,28 +73,31 @@ end
 #send error in json to client
 
 def sendError(client,e)
-  h = Hash["errno" => e.errno, "error" => e.error]
-  client.puts h.to_json
-end
+  #doesn't works.
+ # h = ["errno" => e.errno, "error" => e.error]
+  client.close
+ end
 
 
 
 #parse json and call the class for the queries
 
 def analyse(string,c,con,client)
-
+#puts "\nis in analyse method!"
  # puts string
 
   #ALL VARIABLES
-  command= string["command"]
-  description=string["description"]
-  quantity=string["quantity"]
-  price= string["price"]
-  color= string["color"]
-  brand= string["brand"]
-  model= string["model"]
-  barcode=string["barcode"]
+  command = string["command"]
+  description = string["description"]
+  quantity = string["quantity"]
+  price = string["price"]
+  color = string["color"]
+  brand = string["brand"]
+  model = string["model"]
+  barcode = string["barcode"]
 
+puts "\n this is the command \n"
+puts command
 
   #SWITCH CASE
   case command
@@ -114,6 +121,30 @@ def analyse(string,c,con,client)
 end
 
 
+
+def processStr(readString,con,client)
+  puts "it is entered in processStr  function"
+  begin
+    # parse json
+    data = JSON.parse(readString)
+    puts data
+
+    command=data["commmand"]
+    puts "this is the command"
+    puts command
+    # create the obj used in switch
+
+    queryObject= Shop .new
+
+    # call the method that analyse the json code.
+    analyse(data,queryObject,con,client)
+
+  rescue JSON::ParserError => e
+    client.puts "{\"error\":\"parsejson\"}"
+    sendError(client,e)
+  end
+
+end
 
 #results= con.query("SELECT * FROM magazzino_scorza.prodotti")
 #loop for the connection

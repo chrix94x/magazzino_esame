@@ -8,23 +8,23 @@ require 'socket'
 
 
 def processStr(readString)
-puts "it is entered in processStr  function"
-begin
-	data = JSON.parse(readString)
-	puts data
-	
-	 #ALL VARIABLES
- 	command = data["command"]
+	puts "it is entered in processStr  function"
+	begin
+		data = JSON.parse(readString)
+		puts data
 
-	#changesssss
+		#ALL VARIABLES
+		command = data["command"]
 
-	puts "this is the command"
-	puts command
-	#	analyse(string,c,con,client)
+		#changesssss
+
+		puts "this is the command"
+		puts command
+			#	analyse(string,c,con,client)
 	rescue JSON::ParserError => e
-	client.puts "{\"error\":\"parsejson\"}"
-	sendError(client,e)
-end
+		client.puts "{\"error\":\"parsejson\"}"
+		sendError(client,e)
+	end
 
 end
 

@@ -162,7 +162,7 @@
 	while ([self.inputStream hasBytesAvailable])
 	{
 		len = [self.inputStream read:buffer maxLength:sizeof(buffer)];
-		if (len > 0) {
+		if(len>0) {
 			
 			NSString *output = [[NSString alloc] initWithBytes:buffer length:len encoding:NSASCIIStringEncoding];
 			
