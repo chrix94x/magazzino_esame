@@ -68,18 +68,20 @@
 }
 
 
--(void)closeAllSockets
+-(void)closeStreams
 {
+    NSRunLoop * loop = [NSRunLoop currentRunLoop];
+    
 	if (self.inputStream != nil){
 		
 		[self.inputStream close];
-		[self.inputStream removeFromRunLoop:[NSRunLoop currentRunLoop] forMode:NSDefaultRunLoopMode];
+		[self.inputStream removeFromRunLoop:loop forMode:NSDefaultRunLoopMode];
 		self.inputStream = nil;
 	}
 	
 	if (self.outputStream != nil){
 		[self.outputStream close];
-		[self.outputStream removeFromRunLoop:[NSRunLoop currentRunLoop] forMode:NSDefaultRunLoopMode];
+		[self.outputStream removeFromRunLoop: loop forMode:NSDefaultRunLoopMode];
 		self.outputStream = nil;
 	}
 
@@ -90,7 +92,7 @@
 {
 	dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.5 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
 		
-		[self closeAllSockets];
+		[self closeStreams];
 		
 	});
 	
@@ -135,8 +137,11 @@
             
         case NSStreamEventHasBytesAvailable:
             
-            if (theStream == self.inputStream)
+            if (theStream == self.inputStream){
                 [self processResponse];
+            }
+            
+            
             
             break;
             
@@ -156,27 +161,25 @@
 
 -(void)processResponse{
 	
-	uint8_t buffer[1024 * 128];
-	NSInteger len;
-	
-	while ([self.inputStream hasBytesAvailable])
-	{
-		len = [self.inputStream read:buffer maxLength:sizeof(buffer)];
-		if(len>0) {
-			
-			NSString *output = [[NSString alloc] initWithBytes:buffer length:len encoding:NSASCIIStringEncoding];
-			
-			if (nil != output) {
-				// NSLog(@"server said: %@", output);
-				NSLog(@"\n%@", output);
-              
-
-			}
-		}
-	}
-	
-		[self closeAllSocketsOnMainThread];
-		
+    uint8_t buffer[1024 * 128];
+    NSInteger len;
+    
+    while ([self.inputStream hasBytesAvailable])
+    {
+        len = [self.inputStream read:buffer maxLength:sizeof(buffer)];
+        if(len>0) {
+            
+            NSString *output = [[NSString alloc] initWithBytes:buffer length:len encoding:NSASCIIStringEncoding];
+            
+            if (nil != output) {
+                // NSLog(@"server said: %@", output);
+                NSLog(@"\n%@", output);
+            }
+        }
+    }
+    
+    [self closeAllSocketsOnMainThread];
+    
 }
 
 

@@ -26,8 +26,10 @@ loop do
     sock_domain, remote_port, remote_hostname, remote_ip = client.peeraddr
    # puts "from  #{remote_ip} port: #{remote_port}"
     puts "Thread ID: #{my_thread_id} - Time is #{Time.now}\n"
-    client.puts "connected"
-    #take the json
+
+    #client.puts "connected"
+
+   #take the json
     readString = client.read ## wait cr/lf
 
     puts readString
