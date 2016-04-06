@@ -27,10 +27,11 @@ loop do
    # puts "from  #{remote_ip} port: #{remote_port}"
     puts "Thread ID: #{my_thread_id} - Time is #{Time.now}\n"
 
-    client.puts "connected"
+
 
    #take the json
-    readString = client.read ## wait cr/lf
+    #readString = client.read ## wait cr/lf
+    readString = client.gets ## wait cr/lf
 
     puts readString
     processStr(readString,con,client)

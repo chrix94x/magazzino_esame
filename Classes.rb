@@ -10,20 +10,22 @@ class Shop
     puts "start the select"
     results = con.query("SELECT * FROM magazzino_scorza.prodotti")
 
-    count = 0
+   # count = 0
 
     results.each do |results|
 
-      count = count + 1
+      #count = count + 1
 
       puts results.to_json
+      client.puts results.to_json
+
       #ios block here WHY?? maybe doesn't accept other puts...
 
       #client.puts results.to_json
 
-      msg = " #{count}\n"
+     # msg = " #{count}\n"
 
-      client.puts msg
+     # client.puts msg
 
     end
   rescue Mysql2::Error => e
