@@ -10,12 +10,8 @@
 
 
 
-//<<<<<<< HEAD
+#define HOST @"172.16.10.98"
 //#define HOST @"localhost"
-//=======
-//#define HOST @"localhost"
-//>>>>>>> 7f34c4f8c0231a63153e573152b88b325bdd676d
-#define HOST @"localhost"
 //#define HOST @"192.168.2.5"
 //#define HOST @"104.106.82.112"	// apple
 //#define HOST @"77.93.255.134"
@@ -32,13 +28,17 @@
 
 @end
 
+
+uint8_t buffer[1024 * 128];
+NSInteger totalBufferLen = 0;
+
+
 @implementation ViewController
 
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view, typically from a nib.
     
-    // [self initNetworkCommunication];
 	
 	dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.5 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
 		
@@ -64,7 +64,9 @@
     
     [self.inputStream open];
     [self.outputStream open];
-	
+
+    buffer[0] = 0; // clear buffer.
+    totalBufferLen = 0; // reset index.
 }
 
 
@@ -105,19 +107,16 @@
 
 
 	NSString *response  = [NSString stringWithFormat:@"{ \"command\": \"list\",  \"description\": \"testOne\",  \"quantity\": \"20\",\"price\":\"10\"}\r\n"];
-//    NSString *response = [NSString stringWithFormat:@"ciaomamma guarda"];
 
 	// NSString *response  = [[NSDate date] description];
-	
 	NSData *data = [[NSData alloc] initWithData:[response dataUsingEncoding:NSASCIIStringEncoding]];
 	
+    [self closeStreams];
 	[self initNetworkCommunication];
     
     NSInteger written = [self.outputStream write:[data bytes] maxLength:[data length]];
-    
-    
+
 	printf("written %d", (int)written);
-	
 }
 
 
@@ -140,9 +139,6 @@
             if (theStream == self.inputStream){
                 [self processResponse];
             }
-            
-            
-            
             break;
             
         case NSStreamEventErrorOccurred:
@@ -150,39 +146,47 @@
             break;
             
         case NSStreamEventEndEncountered:
+            [self parseBuffer];
 			[self closeAllSocketsOnMainThread];
             break;
             
-      // default:
-        //   NSLog(@"Unknown event");
+        default:
+            //NSLog(@"Unknown event");
+            break;
     }
 }
 
 
 -(void)processResponse{
 	
-    uint8_t buffer[1024 * 128];
     NSInteger len;
-    
-    while ([self.inputStream hasBytesAvailable])
+
+    if ([self.inputStream hasBytesAvailable])
     {
-        len = [self.inputStream read:buffer maxLength:sizeof(buffer)];
+        
+        uint8_t * bufferPtr = buffer + totalBufferLen;
+        len = [self.inputStream read:bufferPtr maxLength:sizeof(buffer) - totalBufferLen];
         if(len>0) {
             
-            NSString *output = [[NSString alloc] initWithBytes:buffer length:len encoding:NSASCIIStringEncoding];
+            totalBufferLen += len;
             
+            // to debug add a zero:
+            bufferPtr[totalBufferLen] = 0;
+            NSString *output = [[NSString alloc] initWithBytes:buffer length:len encoding:NSASCIIStringEncoding];
             if (nil != output) {
                 // NSLog(@"server said: %@", output);
-                NSLog(@"\n%@", output);
+                NSLog(@"\npartial: \n%@", output);
             }
         }
     }
-    
-    [self closeAllSocketsOnMainThread];
-    
 }
 
 
+
+-(void)parseBuffer{
+    NSLog(@"\n=============\nALL: \n%s", buffer);
+
+}
 
 
 @end
