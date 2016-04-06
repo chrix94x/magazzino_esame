@@ -10,7 +10,7 @@
 
 
 
-#define HOST @"172.16.10.98"
+#define HOST @"172.16.14.127"
 //#define HOST @"localhost"
 //#define HOST @"192.168.2.5"
 //#define HOST @"104.106.82.112"	// apple
@@ -106,7 +106,7 @@ NSInteger totalBufferLen = 0;
 - (IBAction)sendSampleText:(UIButton *)sender {
 
 
-	NSString *response  = [NSString stringWithFormat:@"{ \"command\": \"list\",  \"description\": \"testOne\",  \"quantity\": \"20\",\"price\":\"10\"}\r\n"];
+	NSString *response  = [NSString stringWithFormat:@"{ \"command\": \"list\",  \"description\": \"testOne\",  \"quantity\": \"20\",\"price\":\"10\"}\n\r"];
 
 	// NSString *response  = [[NSDate date] description];
 	NSData *data = [[NSData alloc] initWithData:[response dataUsingEncoding:NSASCIIStringEncoding]];
@@ -172,11 +172,11 @@ NSInteger totalBufferLen = 0;
             
             // to debug add a zero:
             bufferPtr[totalBufferLen] = 0;
-            NSString *output = [[NSString alloc] initWithBytes:buffer length:len encoding:NSASCIIStringEncoding];
-            if (nil != output) {
-                // NSLog(@"server said: %@", output);
-                NSLog(@"\npartial: \n%@", output);
-            }
+            NSString *output = [[NSString alloc] initWithBytes:bufferPtr length:len encoding:NSASCIIStringEncoding];
+			
+//			if (nil != output) {
+//                NSLog(@"\npartial: \n%@", output);
+//            }
         }
     }
 }
