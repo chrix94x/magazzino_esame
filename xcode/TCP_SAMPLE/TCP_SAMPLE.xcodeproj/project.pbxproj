@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		AA4F17A81CB5608800CB1068 /* ConnectionManager.m in Sources */ = {isa = PBXBuildFile; fileRef = AA4F17A71CB5608800CB1068 /* ConnectionManager.m */; };
 		AAD4A1461C941EBA009F9B00 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = AAD4A1451C941EBA009F9B00 /* main.m */; };
 		AAD4A1491C941EBA009F9B00 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = AAD4A1481C941EBA009F9B00 /* AppDelegate.m */; };
 		AAD4A14C1C941EBA009F9B00 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AAD4A14B1C941EBA009F9B00 /* ViewController.m */; };
@@ -17,6 +18,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		AA4F17A61CB5608800CB1068 /* ConnectionManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ConnectionManager.h; sourceTree = "<group>"; };
+		AA4F17A71CB5608800CB1068 /* ConnectionManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ConnectionManager.m; sourceTree = "<group>"; };
 		AAD4A1411C941EBA009F9B00 /* TCP_SAMPLE.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TCP_SAMPLE.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		AAD4A1451C941EBA009F9B00 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		AAD4A1471C941EBA009F9B00 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -41,10 +44,20 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		AA4F17A51CB5608800CB1068 /* ConnectionManager */ = {
+			isa = PBXGroup;
+			children = (
+				AA4F17A61CB5608800CB1068 /* ConnectionManager.h */,
+				AA4F17A71CB5608800CB1068 /* ConnectionManager.m */,
+			);
+			path = ConnectionManager;
+			sourceTree = "<group>";
+		};
 		AAD4A1381C941EBA009F9B00 = {
 			isa = PBXGroup;
 			children = (
 				CE98D0D01C99ABB6000F0774 /* releaseNotes.rtf */,
+				AA4F17A51CB5608800CB1068 /* ConnectionManager */,
 				AAD4A1431C941EBA009F9B00 /* TCP_SAMPLE */,
 				AAD4A1421C941EBA009F9B00 /* Products */,
 			);
@@ -155,6 +168,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				AAD4A14C1C941EBA009F9B00 /* ViewController.m in Sources */,
+				AA4F17A81CB5608800CB1068 /* ConnectionManager.m in Sources */,
 				AAD4A1491C941EBA009F9B00 /* AppDelegate.m in Sources */,
 				AAD4A1461C941EBA009F9B00 /* main.m in Sources */,
 			);
