@@ -11,14 +11,23 @@ class Shop
     results = con.query("SELECT * FROM magazzino_scorza.prodotti")
 
    # count = 0
+   totRows = results.count
 
+
+    count=0;
+    client.puts "["
     results.each do |results|
 
-      #count = count + 1
 
-      puts results.to_json
+      #puts results.to_json
+
       client.puts results.to_json
 
+      if (count<totRows-1)
+        client.puts ","
+      end
+
+        count = count + 1
       #ios block here WHY?? maybe doesn't accept other puts...
 
       #client.puts results.to_json
@@ -28,6 +37,10 @@ class Shop
      # client.puts msg
 
     end
+
+    client.puts "]"
+
+
   rescue Mysql2::Error => e
   sendError(client,e)
 

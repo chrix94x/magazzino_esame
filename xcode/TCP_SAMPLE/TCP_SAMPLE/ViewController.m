@@ -7,11 +7,12 @@
 //
 
 #import "ConnectionManager.h"
+#import "ConnectionManagerDelegate.h"
 #import "ViewController.h"
 
 
 
-@interface ViewController ()
+@interface ViewController ()<ConnectionManagerDelegate>
 
 
 @end
@@ -39,10 +40,17 @@
 
 	NSString *cmd  = [NSString stringWithFormat:@"{ \"command\": \"list\",  \"description\": \"testOne\",  \"quantity\": \"20\",\"price\":\"10\"}\r\n"];
     
-    [[ConnectionManager sharedInstance] sendCommand: cmd];
+    [[ConnectionManager sharedInstance] sendCommand: cmd withDelegate: self];
 }
 
 
+
+#pragma mark delegate
+
+-(void)processJSONString:(NSString*)JSONString;
+{
+    
+}
 
 
 

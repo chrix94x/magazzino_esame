@@ -7,14 +7,16 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "ConnectionManagerDelegate.h"
 
 @interface ConnectionManager : NSObject
 
+@property (weak) id<ConnectionManagerDelegate> delegate;
 
 +(ConnectionManager*)sharedInstance;
 - (void)initNetworkCommunication;
 -(void)closeStreams;
 -(void)closeAllSocketsOnMainThread;
-- (void)sendCommand:(NSString*)cmd;
+- (void)sendCommand:(NSString*)cmd withDelegate:(id<ConnectionManagerDelegate>) delegate;
 
 @end

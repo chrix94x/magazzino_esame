@@ -20,6 +20,7 @@
 /* Begin PBXFileReference section */
 		AA4F17A61CB5608800CB1068 /* ConnectionManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ConnectionManager.h; sourceTree = "<group>"; };
 		AA4F17A71CB5608800CB1068 /* ConnectionManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ConnectionManager.m; sourceTree = "<group>"; };
+		AA4F17A91CB565D600CB1068 /* ConnectionManagerDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ConnectionManagerDelegate.h; sourceTree = "<group>"; };
 		AAD4A1411C941EBA009F9B00 /* TCP_SAMPLE.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TCP_SAMPLE.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		AAD4A1451C941EBA009F9B00 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		AAD4A1471C941EBA009F9B00 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -47,6 +48,7 @@
 		AA4F17A51CB5608800CB1068 /* ConnectionManager */ = {
 			isa = PBXGroup;
 			children = (
+				AA4F17A91CB565D600CB1068 /* ConnectionManagerDelegate.h */,
 				AA4F17A61CB5608800CB1068 /* ConnectionManager.h */,
 				AA4F17A71CB5608800CB1068 /* ConnectionManager.m */,
 			);

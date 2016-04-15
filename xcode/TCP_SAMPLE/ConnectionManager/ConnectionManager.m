@@ -22,8 +22,8 @@
 
 
 
-#define HOST @"172.16.10.98"
-//#define HOST @"localhost"
+//#define HOST @"172.16.10.98"
+#define HOST @"localhost"
 //#define HOST @"192.168.2.5"
 //#define HOST @"104.106.82.112"	// apple
 //#define HOST @"77.93.255.134"
@@ -107,8 +107,11 @@ static NSInteger totalBufferLen = 0;
 
 
 
-- (void)sendCommand:(NSString*)cmd
+- (void)sendCommand:(NSString*)cmd withDelegate:(id<ConnectionManagerDelegate>) delegate;
+
 {
+    self.delegate = delegate;
+    
     NSData *data = [[NSData alloc] initWithData:[cmd dataUsingEncoding:NSASCIIStringEncoding]];
     
     [self closeStreams];
@@ -185,7 +188,11 @@ static NSInteger totalBufferLen = 0;
 
 -(void)parseBuffer{
     NSLog(@"\n=============\nALL: \n%s", buffer);
-    
+    if (self.delegate)
+    {
+        NSString * s = [[NSString alloc]initWithBytes:buffer length:totalBufferLen encoding: NSUTF8StringEncoding];
+        [self.delegate processJSONString:s];
+    }
 }
 
 
