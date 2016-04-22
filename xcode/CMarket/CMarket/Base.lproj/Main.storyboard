@@ -119,6 +119,9 @@
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="a1V-QR-kfN">
                                 <rect key="frame" x="84" y="100" width="148" height="30"/>
                                 <state key="normal" title="sample button for tcp"/>
+                                <connections>
+                                    <action selector="AskJson:" destination="8rJ-Kc-sve" eventType="touchUpInside" id="ECx-LU-fKC"/>
+                                </connections>
                             </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>

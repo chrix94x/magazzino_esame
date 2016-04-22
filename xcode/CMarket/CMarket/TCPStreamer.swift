@@ -22,9 +22,7 @@ class TCPStreamer: NSObject , NSStreamDelegate {
     
     
     override init () {
-        
      super.init()
-    
     }
     
     
@@ -45,11 +43,9 @@ class TCPStreamer: NSObject , NSStreamDelegate {
         self.inputStream = readStream! .takeRetainedValue()
         self.outputStream = writeStream! .takeRetainedValue()
            
-            
             inputStream!.delegate = self
             outputStream!.delegate = self
-            
-            
+
             inputStream!.delegate = self
             outputStream!.delegate = self
             
@@ -73,7 +69,7 @@ class TCPStreamer: NSObject , NSStreamDelegate {
         {
             let len : Int = Int (strlen(c))
             let p = UnsafePointer<UInt8>(c)
-            self.outputStream?.write(p,maxLength:  len)
+            let written = self.outputStream?.write(p,maxLength:  len)
             
         }
     
@@ -104,23 +100,57 @@ class TCPStreamer: NSObject , NSStreamDelegate {
     let MAX_BUF_LEN = 1014
     var buf = [UInt8](count: MAX_BUF_LEN, repeatedValue:0 )
     let data = NSMutableData()
-    let len = iStream.read(&buf, maxLength : MAX_BUF_LEN)
+        let len = iStream.read(&buf, maxLength : MAX_BUF_LEN)
         
-    
+        
         if(len>0) && (len<MAX_BUF_LEN)
         {
-        
-        data.appendBytes(&buf, length: len)
+            
+            data.appendBytes(&buf, length: len)
             let s = String(data: data, encoding: NSUTF8StringEncoding)
             print(s)
-        }
+            
+            
+            //todo
+            processJson(data: NSData)
+            {
         
+            do {
+                let json : NSArray = try NSJSONSerialization.JSONObjectWithData(data, options: .AllowFragments) as! NSArray
+             
+                
+                for dict in json
+                {
+                    //TODO da finire la funzione parse json.
+                    
+                    
+                /*
+                    
+                let id = dict["id"]
+                let desc = dict["descrizione"]
+                let c = product(id: id, desc: dict)
+                    
+                    
+                */
+                    
+                }
+                if let dictionary = object as? [String: AnyObject] {
+                        readJSONObject(dictionary)
+                    }
+                } catch {
+                    print ("Json error")
+                }
+            
+            
+            }
+        }
+            
         else
         {
-                NSLog("no data. /too data")
+            NSLog("no data. /too data")
         }
-    
-    
+        
+        
     }
     
     
