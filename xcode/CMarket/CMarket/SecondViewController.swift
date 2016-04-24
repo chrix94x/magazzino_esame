@@ -33,7 +33,7 @@ class SecondViewController: UIViewController, DataParserDelegate {
     
     func sendCommand(var cmd: String)  {
  
-        var command = "{\"command\":"
+        let command = "{\"command\":"
         let close = "}"
         cmd = command + "\"" + cmd + "\"" + close + "\n"
 
@@ -61,7 +61,8 @@ class SecondViewController: UIViewController, DataParserDelegate {
                 let id = dict["id"] as? String
                 let desc = dict["descrizione"] as? String
                 let cost = dict["prezzo"] as? NSNumber
-                let c = Product(descr: desc!, cost: cost!.doubleValue)
+                let quantity = dict["quantita"] as? NSNumber
+                let c = Product(descr: desc!, cost: cost!.doubleValue, quantity: quantity!.integerValue)
                 print(c)
             }
         }

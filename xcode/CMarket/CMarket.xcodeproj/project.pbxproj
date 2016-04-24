@@ -16,6 +16,7 @@
 		AAA25C3E1CB8207700293958 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AAA25C3C1CB8207700293958 /* LaunchScreen.storyboard */; };
 		AAA25C461CB8212C00293958 /* ProductsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAA25C451CB8212C00293958 /* ProductsTableViewController.swift */; };
 		AAA25C481CB821C500293958 /* Product.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAA25C471CB821C500293958 /* Product.swift */; };
+		AAA6C7081CCD1702009A96FB /* ProductDetailController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAA6C7071CCD1702009A96FB /* ProductDetailController.swift */; };
 		AAE64F9D1CC160E40021595F /* TCPStreamer.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAE64F9C1CC160E40021595F /* TCPStreamer.swift */; };
 /* End PBXBuildFile section */
 
@@ -31,6 +32,7 @@
 		AAA25C3F1CB8207700293958 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		AAA25C451CB8212C00293958 /* ProductsTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProductsTableViewController.swift; sourceTree = "<group>"; };
 		AAA25C471CB821C500293958 /* Product.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Product.swift; sourceTree = "<group>"; };
+		AAA6C7071CCD1702009A96FB /* ProductDetailController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProductDetailController.swift; sourceTree = "<group>"; };
 		AAE64F9C1CC160E40021595F /* TCPStreamer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TCPStreamer.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -67,11 +69,12 @@
 				AA8D13321CCD022000C07554 /* DataParserDelegate.swift */,
 				AAE64F9C1CC160E40021595F /* TCPStreamer.swift */,
 				AAA25C311CB8207700293958 /* AppDelegate.swift */,
+				AAA25C471CB821C500293958 /* Product.swift */,
 				AAA25C331CB8207700293958 /* FirstViewController.swift */,
 				AAA25C351CB8207700293958 /* SecondViewController.swift */,
-				AAA25C371CB8207700293958 /* Main.storyboard */,
 				AAA25C451CB8212C00293958 /* ProductsTableViewController.swift */,
-				AAA25C471CB821C500293958 /* Product.swift */,
+				AAA25C371CB8207700293958 /* Main.storyboard */,
+				AAA6C7071CCD1702009A96FB /* ProductDetailController.swift */,
 				AAA25C3C1CB8207700293958 /* LaunchScreen.storyboard */,
 				AAA25C3F1CB8207700293958 /* Info.plist */,
 				AAA25C3A1CB8207700293958 /* Assets.xcassets */,
@@ -151,6 +154,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				AAA6C7081CCD1702009A96FB /* ProductDetailController.swift in Sources */,
 				AAA25C361CB8207700293958 /* SecondViewController.swift in Sources */,
 				AAA25C461CB8212C00293958 /* ProductsTableViewController.swift in Sources */,
 				AAA25C481CB821C500293958 /* Product.swift in Sources */,
