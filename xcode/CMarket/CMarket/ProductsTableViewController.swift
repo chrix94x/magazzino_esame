@@ -30,8 +30,8 @@ class ProductsTableViewController: UITableViewController {
 
 
     func loadDataFromServer_FAKE(){
-        let p1 = Product(name: "banane", cost: 3)
-        let p2 = Product(name: "pere", cost: 4)
+        let p1 = Product(descr: "banane", cost: 3)
+        let p2 = Product(descr: "pere", cost: 4)
         
         products = [Product]()
         
@@ -70,7 +70,7 @@ class ProductsTableViewController: UITableViewController {
         
        // let s = "\(row)"
         let p = self.products![row]
-        cell.textLabel!.text = "\(p.name!)  -- \(p.cost!)"
+        cell.textLabel!.text = "\(p.descr!)  -- \(p.cost!)"
         return cell
     }
 

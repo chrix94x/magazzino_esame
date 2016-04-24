@@ -10,7 +10,7 @@ import UIKit
 
 class Product: NSObject {
 
-    var name: String?
+    var descr: String?
     var cost: Double?
     
 
@@ -18,9 +18,15 @@ class Product: NSObject {
     }
     
     
-     init(name : String, cost: Double) {
-        self.name = name
+     init(descr : String, cost: Double) {
         self.cost  = cost
+        self.descr = descr
+    }
+    
+    
+     override var description: String {
+        let s = "\(cost!) -  \(descr!)"
+        return s
     }
     
 }
