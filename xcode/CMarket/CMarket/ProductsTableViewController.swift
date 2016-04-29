@@ -74,7 +74,8 @@ class ProductsTableViewController: UITableViewController, DataParserDelegate{
         
        // let s = "\(row)"
         let p = self.products![row]
-        cell.textLabel!.text = "\(p.descr!)  -- \(p.cost!)"
+        cell.textLabel!.text = "\(p.descr!)"
+        //-- \(p.cost!)"
         return cell
     }
 
@@ -111,12 +112,15 @@ class ProductsTableViewController: UITableViewController, DataParserDelegate{
             let json : NSArray = try NSJSONSerialization.JSONObjectWithData(data!, options: .AllowFragments) as! NSArray
             
             for dict in json {
+                
                 // print(dict)
                 let id = dict["id"] as? String
                 let desc = dict["descrizione"] as? String
                 let cost = dict["prezzo"] as? NSNumber
                 let quantity = dict["quantita"] as? NSString
-                let c = Product( descr: desc!, cost: cost!.doubleValue, quantity:  quantity!.integerValue)
+                let barcode = dict["barcode"] as? String
+                
+                let c = Product( descr: desc!, cost: cost!.doubleValue, quantity:  quantity!.integerValue ,barcode: barcode!)
                 print(c)
                 products?.append(c)
                 

@@ -17,6 +17,8 @@ class ProductDetailController: UIViewController {
     @IBOutlet weak var LabelDescriptionProduct: UILabel!
     @IBOutlet weak var LabelPriceProduct: UILabel!
     @IBOutlet weak var LabelQuantityProduct: UILabel!
+    @IBOutlet weak var LabelBarcodeProduct: UILabel!
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -24,7 +26,9 @@ class ProductDetailController: UIViewController {
         LabelDescriptionProduct.text = p?.descr
         LabelPriceProduct.text = "\(p!.cost!)"
         LabelQuantityProduct.text = "\(p!.quantity!)"
+        LabelBarcodeProduct.text = "\(p!.barcode!)"
         
+        self.title = "Details" + "  \(p!.descr!)"
         
     }
     

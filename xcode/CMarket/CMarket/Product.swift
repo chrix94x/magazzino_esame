@@ -13,16 +13,19 @@ class Product: NSObject {
     var descr: String?
     var cost: Double?
     var quantity: Int?
+    var barcode: String?
     
     override init() {
     }
     
     
-     init(descr : String, cost: Double ,quantity: Int) {
+    init(descr : String, cost: Double ,quantity: Int, barcode: String) {
         
         self.cost  = cost
         self.descr = descr
         self.quantity = quantity
+        self.barcode = barcode
+        
     }
     
     

@@ -62,7 +62,8 @@ class SecondViewController: UIViewController, DataParserDelegate {
                 let desc = dict["descrizione"] as? String
                 let cost = dict["prezzo"] as? NSNumber
                 let quantity = dict["quantita"] as? NSNumber
-                let c = Product(descr: desc!, cost: cost!.doubleValue, quantity: quantity!.integerValue)
+                let barcode=dict["barcode"] as? String
+                let c = Product(descr: desc!, cost: cost!.doubleValue, quantity: quantity!.integerValue , barcode: barcode!)
                 print(c)
             }
         }

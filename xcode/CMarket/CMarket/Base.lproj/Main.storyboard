@@ -95,7 +95,7 @@
             </objects>
             <point key="canvasLocation" x="0.0" y="1167"/>
         </scene>
-        <!--Product Detail Controller-->
+        <!--Details-->
         <scene sceneID="JgO-ro-4jp">
             <objects>
                 <viewController id="cBb-SW-ELj" customClass="ProductDetailController" customModule="CMarket" customModuleProvider="target" sceneMemberID="viewController">
@@ -108,30 +108,48 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="costo" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hd2-Gd-gJR">
-                                <rect key="frame" x="40" y="170" width="223" height="21"/>
+                                <rect key="frame" x="120" y="179" width="223" height="21"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="GKU-kY-gBG">
-                                <rect key="frame" x="40" y="244" width="223" height="21"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="name" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" highlighted="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="CVS-TU-uue">
-                                <rect key="frame" x="40" y="114" width="520" height="21"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="20" id="JHD-lF-ynT"/>
-                                    <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="20" id="nTi-Of-pWF"/>
-                                </constraints>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="barcode: " textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="GKU-kY-gBG">
+                                <rect key="frame" x="35" y="289" width="223" height="21"/>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="quantita" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qGB-Wk-JvU">
-                                <rect key="frame" x="40" y="208" width="223" height="21"/>
+                                <rect key="frame" x="120" y="231" width="223" height="21"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="price:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Q36-Mj-jB0">
+                                <rect key="frame" x="35" y="179" width="89" height="21"/>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="quantity:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="y4N-pa-7s2">
+                                <rect key="frame" x="35" y="232" width="110" height="21"/>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="barcodeLabel" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hpB-QP-6eZ">
+                                <rect key="frame" x="120" y="289" width="105" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="name" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" highlighted="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="CVS-TU-uue">
+                                <rect key="frame" x="40" y="114" width="520" height="20"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="20" id="JHD-lF-ynT"/>
+                                    <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="20" id="nTi-Of-pWF"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
@@ -143,8 +161,9 @@
                             <constraint firstAttribute="trailingMargin" secondItem="CVS-TU-uue" secondAttribute="trailing" constant="20" id="aJk-8r-rUF"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" id="3Ql-cR-SdW"/>
+                    <navigationItem key="navigationItem" title="Details" id="3Ql-cR-SdW"/>
                     <connections>
+                        <outlet property="LabelBarcodeProduct" destination="hpB-QP-6eZ" id="quR-Lv-UoW"/>
                         <outlet property="LabelDescriptionProduct" destination="CVS-TU-uue" id="ogu-bf-5Tk"/>
                         <outlet property="LabelPriceProduct" destination="hd2-Gd-gJR" id="JH7-oW-DSY"/>
                         <outlet property="LabelQuantityProduct" destination="qGB-Wk-JvU" id="TnV-EI-fBK"/>
@@ -154,7 +173,7 @@
             </objects>
             <point key="canvasLocation" x="1760" y="1199"/>
         </scene>
-        <!--Second-->
+        <!--BarCode-->
         <scene sceneID="wg7-f3-ORb">
             <objects>
                 <viewController id="8rJ-Kc-sve" customClass="SecondViewController" customModule="CMarket" customModuleProvider="target" sceneMemberID="viewController">
@@ -195,7 +214,7 @@
                             <constraint firstAttribute="centerY" secondItem="zEq-FU-wV5" secondAttribute="centerY" id="qzY-Ky-pLD"/>
                         </constraints>
                     </view>
-                    <tabBarItem key="tabBarItem" title="Second" image="second" id="cPa-gy-q4n" userLabel="firstReplaced"/>
+                    <tabBarItem key="tabBarItem" title="BarCode" image="second.png" selectedImage="second.png" id="cPa-gy-q4n" userLabel="firstReplaced" colorLabel="IBBuiltInLabel-Orange"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="4Nw-L8-lE0" sceneMemberID="firstResponder"/>
             </objects>
@@ -224,6 +243,6 @@
     </scenes>
     <resources>
         <image name="first" width="30" height="30"/>
-        <image name="second" width="30" height="30"/>
+        <image name="second.png" width="40" height="40"/>
     </resources>
 </document>
