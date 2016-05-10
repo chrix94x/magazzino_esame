@@ -28,12 +28,11 @@ loop do
     puts "Thread ID: #{my_thread_id} - Time is #{Time.now}\n"
 
 
-
    #take the json
     #readString = client.read ## wait cr/lf
     readString = client.gets ## wait cr/lf
-
     puts readString
+    puts "this is the string that i recived\n "+ readString + "\n"
     processStr(readString,con,client)
 
     client.close
