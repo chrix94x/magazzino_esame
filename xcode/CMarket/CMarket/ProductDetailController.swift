@@ -31,10 +31,7 @@ class ProductDetailController: UIViewController {
         self.title = "Details" + "  \(p!.descr!)"
         
     }
-    
-    
-    
-    
-
+ 
+  
   
 }

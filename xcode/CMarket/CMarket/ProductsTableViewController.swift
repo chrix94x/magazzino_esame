@@ -16,6 +16,17 @@
 
 import UIKit
 
+
+
+// let host = "localhost"
+let host="192.168.1.7"
+//let host="172.16.10.115"
+
+
+let port : UInt32 = 2000
+
+
+
 class ProductsTableViewController: UITableViewController, DataParserDelegate{
 
     var products:  [Product]?
@@ -40,15 +51,16 @@ class ProductsTableViewController: UITableViewController, DataParserDelegate{
     }
     
     func loadDataFromServer(){
-        
+ 
         products = [Product]()
 
         self.sharedInstance.openSocketsIfNeeded(host,onPort: port, delegate:  self)
         sendCommand("list")
+ 
     }
     
     
-    
+
     // MARK: - Table view data source
 
     override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
@@ -87,21 +99,46 @@ class ProductsTableViewController: UITableViewController, DataParserDelegate{
         
     }
     
+   
     
     func sendCommand(var cmd: String)  {
         
-        var command = "{\"command\":"
+        let command = "{\"command\":"
         let close = "}"
         cmd = command + "\"" + cmd + "\"" + close + "\n"
         
         
         print(cmd)
-        
+        //last
         self.sharedInstance.writeToServer(cmd)
         
         //self.sharedInstance.writeToServer("wearehere")
     }
-
+    
+    /*
+    
+    func sendCommandRemove(var barcode: String)
+    {
+        
+        // {"command":"remove", "barcode":"barcodeSended"}
+        
+        let command = "{\"command\":\"remove\",\"barcode\":\""
+        let close = "\"}"
+        
+        barcode = command + barcode + close
+        
+        
+        
+        print(barcode)
+        
+    
+        self.sharedInstance.writeToServer(barcode)
+        
+        //self.sharedInstance.writeToServer("wearehere")
+        
+    
+    }
+*/
     
     func parseJSON(data: NSData?){
         if data == nil{
@@ -153,5 +190,27 @@ class ProductsTableViewController: UITableViewController, DataParserDelegate{
         
         
     }
-
+    
+    /*
+    func generateBarcodeFromString(string: String) -> UIImage? {
+        
+        let data = string.dataUsingEncoding(NSASCIIStringEncoding)
+        
+        if let filter = CIFilter(name: "CICode128BarcodeGenerator") {
+            filter.setValue(data, forKey: "inputMessage")
+            let transform = CGAffineTransformMakeScale(3, 3)
+            
+            if let output = filter.outputImage?.imageByApplyingTransform(transform) {
+                return UIImage(CIImage: output)
+            }
+        }
+        
+        return nil
+        
+        
+    }
+    
+    
+    let image = generateBarcodeFromString("Hacking with Swift")
+*/
 }

@@ -70,7 +70,7 @@ class TCPStreamer: NSObject, NSStreamDelegate {
         {
             let len : Int = Int (strlen(c))
             let p = UnsafePointer<UInt8>(c)
-            let written = self.outputStream?.write(p,maxLength:  len)
+            _ = self.outputStream?.write(p,maxLength:  len)
         }
     }
     
@@ -79,6 +79,7 @@ class TCPStreamer: NSObject, NSStreamDelegate {
     final func closeStreams()
     {
         let loop = NSRunLoop.currentRunLoop()
+
         
         self.inputStream!.close()
         self.inputStream!.removeFromRunLoop(loop, forMode: NSDefaultRunLoopMode)
@@ -96,7 +97,7 @@ class TCPStreamer: NSObject, NSStreamDelegate {
     
     private final func processResponse (iStream : NSInputStream)
     {
-        let MAX_BUF_LEN = 1014
+        let MAX_BUF_LEN = 1014*2
         var buf = [UInt8](count: MAX_BUF_LEN, repeatedValue:0 )
         let len = iStream.read(&buf, maxLength : MAX_BUF_LEN)
         if(len>0) && (len<MAX_BUF_LEN) {
@@ -157,6 +158,9 @@ class TCPStreamer: NSObject, NSStreamDelegate {
         }
     }
 
+    
+    
+    
     
 }
 
