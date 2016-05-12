@@ -64,14 +64,32 @@ class TCPStreamer: NSObject, NSStreamDelegate {
     }
     
     
-    final func writeToServer(s:String)
+    final func writeToServer(s:String)->Bool
     {
+        let status = self.outputStream?.streamStatus
+       
+        if status != .Open
+        {
+        //code
+        }
+        
+        
         if let c = s.cStringUsingEncoding(NSUTF8StringEncoding)
         {
             let len : Int = Int (strlen(c))
             let p = UnsafePointer<UInt8>(c)
-            _ = self.outputStream?.write(p,maxLength:  len)
+            let written = self.outputStream?.write(p,maxLength:  len)
+            
+            if 0 < written
+            {
+               return true
+            }
+            
+            print (written)
+            
+            
         }
+        return false
     }
     
     
@@ -158,9 +176,7 @@ class TCPStreamer: NSObject, NSStreamDelegate {
         }
     }
 
-    
-    
-    
+
     
 }
 

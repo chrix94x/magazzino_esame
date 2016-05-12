@@ -81,6 +81,7 @@
 		AAA25C301CB8207700293958 /* CMarket */ = {
 			isa = PBXGroup;
 			children = (
+				AA2B79B01CE3581900DA9233 /* LoadingOverlay.swift */,
 				AA8D13321CCD022000C07554 /* DataParserDelegate.swift */,
 				AAE64F9C1CC160E40021595F /* TCPStreamer.swift */,
 				AAA25C311CB8207700293958 /* AppDelegate.swift */,
@@ -95,7 +96,6 @@
 				AA268CEC1CD3E3CA0060D108 /* Assets.xcassets */,
 				AAA25C3F1CB8207700293958 /* Info.plist */,
 				AA268CC71CD3E0BE0060D108 /* second.imageset */,
-				AA2B79B01CE3581900DA9233 /* LoadingOverlay.swift */,
 			);
 			path = CMarket;
 			sourceTree = "<group>";

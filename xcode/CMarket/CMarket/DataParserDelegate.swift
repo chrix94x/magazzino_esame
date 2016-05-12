@@ -12,4 +12,6 @@ import Foundation
 public protocol DataParserDelegate {
     
     func parseJSON(data: NSData?)
+        
+    
 }

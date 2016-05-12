@@ -41,22 +41,36 @@ class ProductsTableViewController: UITableViewController, DataParserDelegate{
 
 
     func loadDataFromServer_FAKE(){
-  //      let p1 = Product(descr: "banane", cost: 3)
-  //      let p2 = Product(descr: "pere", cost: 4)
         
         products = [Product]()
         
-//        products?.append(p1)
-//        products?.append(p2)
     }
     
     func loadDataFromServer(){
  
         products = [Product]()
 
-        self.sharedInstance.openSocketsIfNeeded(host,onPort: port, delegate:  self)
-        sendCommand("list")
- 
+        var ok = self.sharedInstance.openSocketsIfNeeded(host,onPort: port, delegate:  self)
+        
+        if ok
+        {
+           ok = sendCommand("list")
+        }
+        if !ok
+        {
+            alertControllerConnectionError()
+        }
+    }
+    
+    func alertControllerConnectionError()
+    {
+        let alertController = UIAlertController(title: "connection error", message: "impossible server connection ", preferredStyle: UIAlertControllerStyle.Alert)
+        
+        alertController.addAction(UIAlertAction(title: "ok", style: UIAlertActionStyle.Default,handler: nil))
+        
+        self.presentViewController(alertController, animated: true, completion: nil)
+
+    
     }
     
     
@@ -91,55 +105,32 @@ class ProductsTableViewController: UITableViewController, DataParserDelegate{
         return cell
     }
 
-    
+    /*
     @IBAction func AskJson(sender: AnyObject) {
         
         self.sharedInstance.openSocketsIfNeeded(host,onPort: port, delegate: self)
         sendCommand("list")
         
     }
-    
+    */
    
     
-    func sendCommand(var cmd: String)  {
+    func sendCommand( inputCmd: String) ->Bool  {
         
         let command = "{\"command\":"
         let close = "}"
-        cmd = command + "\"" + cmd + "\"" + close + "\n"
-        
-        
+        let cmd = command + "\"" + inputCmd + "\"" + close + "\n"
         print(cmd)
+        
+        
         //last
-        self.sharedInstance.writeToServer(cmd)
-        
-        //self.sharedInstance.writeToServer("wearehere")
+        let ok = self.sharedInstance.writeToServer(cmd)
+        return ok
     }
     
-    /*
     
-    func sendCommandRemove(var barcode: String)
-    {
-        
-        // {"command":"remove", "barcode":"barcodeSended"}
-        
-        let command = "{\"command\":\"remove\",\"barcode\":\""
-        let close = "\"}"
-        
-        barcode = command + barcode + close
-        
-        
-        
-        print(barcode)
-        
     
-        self.sharedInstance.writeToServer(barcode)
-        
-        //self.sharedInstance.writeToServer("wearehere")
-        
-    
-    }
-*/
-    
+       
     func parseJSON(data: NSData?){
         if data == nil{
             return
@@ -151,7 +142,7 @@ class ProductsTableViewController: UITableViewController, DataParserDelegate{
             for dict in json {
                 
                 // print(dict)
-                let id = dict["id"] as? String
+                // let id = dict["id"] as? String
                 let desc = dict["descrizione"] as? String
                 let cost = dict["prezzo"] as? NSNumber
                 let quantity = dict["quantita"] as? NSString

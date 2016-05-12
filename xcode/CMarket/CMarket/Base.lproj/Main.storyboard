@@ -187,6 +187,7 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     </view>
                     <navigationItem key="navigationItem" id="zDd-Vl-SgV"/>
+                    <simulatedOrientationMetrics key="simulatedOrientationMetrics"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="4Nw-L8-lE0" sceneMemberID="firstResponder"/>
             </objects>
@@ -219,6 +220,7 @@
                     <tabBarItem key="tabBarItem" title="BarCode" image="second" selectedImage="second.png" id="cPa-gy-q4n" userLabel="firstReplaced" colorLabel="IBBuiltInLabel-Orange"/>
                     <toolbarItems/>
                     <navigationItem key="navigationItem" id="Lav-z8-LVZ"/>
+                    <simulatedOrientationMetrics key="simulatedOrientationMetrics"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="qUB-uZ-7YB">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>

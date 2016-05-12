@@ -16,7 +16,7 @@ class BarcodeViewController: UIViewController, AVCaptureMetadataOutputObjectsDel
     var captureSession: AVCaptureSession!
     var previewLayer: AVCaptureVideoPreviewLayer!
     let sharedInstance = TCPStreamer.sharedInstance
-
+    private var data : NSMutableData?
     
     
     
@@ -24,6 +24,7 @@ class BarcodeViewController: UIViewController, AVCaptureMetadataOutputObjectsDel
     
    
     override func viewDidLoad() {
+       
             super.viewDidLoad()
             
             view.backgroundColor = UIColor.blackColor()
@@ -102,58 +103,34 @@ class BarcodeViewController: UIViewController, AVCaptureMetadataOutputObjectsDel
             AudioServicesPlaySystemSound(SystemSoundID(kSystemSoundID_Vibrate))
             foundCode(readableObject.stringValue);
         }
-        
-        dismissViewControllerAnimated(true, completion: nil)
-        
-        
-        alertBarcodeSuccessful()
-        
-        
-        //alert "success" or "not"
-        
-        
-        
-        //riavvia schermata
-       // viewDidLoad()
-        
-        
-    }
+       
+}
     
-    func alertBarcodeSuccessful()
+    func alertBarcodeSuccessful(code: String)
     {
         
         
         let alertController = UIAlertController(title: "Barcode message", message: "barcode successuful ", preferredStyle: UIAlertControllerStyle.Alert)
-        alertController.addAction(UIAlertAction(title: "continue", style: UIAlertActionStyle.Default,handler: nil))
+        
+        
+        alertController.addAction(UIAlertAction(title: "cancel", style: UIAlertActionStyle.Default, handler: { (action: UIAlertAction!) in
+            
+            //barcode not correct so... i recall viewDidLoad
+            
+            self.viewDidLoad()
 
+            }))
+        
+        alertController.addAction(UIAlertAction(title: "remove product", style: UIAlertActionStyle.Default, handler: { (action: UIAlertAction!) in
 
-        alertController.addAction(UIAlertAction(title: "1st", style: UIAlertActionStyle.Default, handler: { (action: UIAlertAction!) in
+            self.AlertRemovedSuccessOrNot(code)
           
-
-           
-            //loading wheel 
-            
-                LoadingOverlay.shared.showOverlay(self.view)
-            //start code while loading 
-            
-            
-            //hide bar
-            
-                self.tabBarController?.tabBar.hidden = true
-            
-            
-            //show bar
-            //self.tabBarController?.tabBar.hidden = false
-            
-            //close code
-            //close loading
-            //LoadingOverlay.shared.hideOverlayView()
 
         }))
         
         alertController.addAction(UIAlertAction(title: "2nd", style: UIAlertActionStyle.Default, handler: { (action: UIAlertAction!) in
             
-            // codice qui x remove
+            // codice qui x qualcosa
         }))
         
         self.presentViewController(alertController, animated: true, completion: nil)
@@ -165,17 +142,71 @@ class BarcodeViewController: UIViewController, AVCaptureMetadataOutputObjectsDel
         
         print(code) //Print the barcode.
         
-        sendCommandRemove(code)
+       
+        dismissViewControllerAnimated(true, completion: nil)
         
-        // riavvia schermata
         
-        //popUpUIAlertController* alert = [UIAlertController alertControllerWithTitle:@"My Alert"
+        
+        alertBarcodeSuccessful(code)
+        
+        
         
     }
     
- 
+    
 
-
+    func AlertRemovedSuccessOrNot(code: String)
+{
+    
+    
+    LoadingOverlay.shared.showOverlay(self.view)  //loading wheel
+    
+    self.tabBarController?.tabBar.hidden = true  //hide bar
+    
+    self.sendCommandRemove(code)   //send command remove
+    
+    
+    //TODO TODO TODO//TODO TODO TODO//TODO TODO TODO//TODO TODO TODO//TODO TODO TODO//TODO TODO TODO//TODO TODO TODO
+    
+    //i have to read a message from server or error.. i don't know how.
+    
+    // read message or error with if
+    
+    //code todo
+    
+    
+    
+    LoadingOverlay.shared.hideOverlayView()    //close wheel
+    
+    
+    //send message success
+    
+    let messageRemovedSuccess = UIAlertController(title: "Product Message", message: "Removed Success! ", preferredStyle: UIAlertControllerStyle.Alert)
+    
+    messageRemovedSuccess.addAction(UIAlertAction(title: "ok", style: UIAlertActionStyle.Default, handler:{ (action: UIAlertAction!) in
+        
+        //show bar and view again
+        
+        self.viewDidLoad()
+        self.tabBarController?.tabBar.hidden = false
+    }))
+    self.presentViewController(messageRemovedSuccess, animated: true, completion: nil)
+    
+    
+    
+    
+    
+    //show bar
+    //self.tabBarController?.tabBar.hidden = false
+    
+    //close code
+    //close loading
+    //LoadingOverlay.shared.hideOverlayView()
+    
+    
+    
+    
+}
 
     func sendCommandRemove(let barcode: String)
     {
@@ -192,12 +223,18 @@ class BarcodeViewController: UIViewController, AVCaptureMetadataOutputObjectsDel
         dispatch_async(dispatch_get_main_queue()) {
             
             self.sharedInstance.openSocketsIfNeeded(host,onPort: port, delegate:  self)
+            
             print("sending barcode command")
+            
             self.sharedInstance.writeToServer(barcodeCommand)
-            self.sharedInstance.closeStreams()
             
             
+           self.sharedInstance.closeStreams()
+           
         }
+        
+        
+        
         
     }
 
@@ -211,12 +248,51 @@ class BarcodeViewController: UIViewController, AVCaptureMetadataOutputObjectsDel
     }
     
     
-    
-    
-    func parseJSON(data: NSData?){
+    /*
+    //TODO
+    func parseJSONWithString(data: NSData?)->String{
         
+         //TODO
+         
+        if data == nil{
+         return "no data"
+         }
+         
+    do{
+         let json : NSArray = try NSJSONSerialization.JSONObjectWithData(data!, options: .AllowFragments) as! NSArray
+         
+         for dict in json {
+         
+         // print(dict)
+         let message = dict["message"] as? String
+         let error = dict["error"] as? String
+        
+            if error != nil
+            {
+            print(error)
+            return error!
+            }
+            if message != nil
+            {
+            print (message)
+            return message!
+            }
+        }
+   //     self.
+            
     }
-
+                catch
+                {
+                    print ("Json error")
+                }
+        return "error"
 }
-
+    */
+    
+    func parseJSON(data: NSData?)
+    {
+        //
+    }
+    
+}
 
