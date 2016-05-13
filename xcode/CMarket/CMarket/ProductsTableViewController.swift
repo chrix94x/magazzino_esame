@@ -19,11 +19,12 @@ import UIKit
 
 
 // let host = "localhost"
-//let host="192.168.1.7"
-let host="172.16.10.115"
+let host="192.168.1.7"
+//let host="172.16.10.115"
 
 
 let port : UInt32 = 2000
+
 
 
 
@@ -49,15 +50,14 @@ class ProductsTableViewController: UITableViewController, DataParserDelegate{
  
         products = [Product]()
 
-        var ok = TCPStreamer.sharedInstance.openSocketsIfNeeded(host,onPort: port, delegate:  self)
+        TCPStreamer.sharedInstance.openSocketsIfNeeded(host,onPort: port, delegate:  self)
         
-        if ok{
-           ok = sendCommand("list")
+        var ok = sendCommand("list")
+        if !ok
+        {
+            self.alertControllerConnectionError()
         }
         
-        if !ok{
-            alertControllerConnectionError()
-        }
     }
     
     func alertControllerConnectionError()

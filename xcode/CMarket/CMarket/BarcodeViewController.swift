@@ -19,16 +19,16 @@
             override func viewDidLoad() {
                 
                 super.viewDidLoad()
-                
+                /*
                 dispatch_after( dispatch_time(DISPATCH_TIME_NOW, Int64(1 * Double(NSEC_PER_SEC))),
                     dispatch_get_main_queue(),
                     {
                         self.foundCode("111111")
                     }
                 )
-                    
+         
                 return;
-                
+                */
                 view.backgroundColor = UIColor.blackColor()
                 captureSession = AVCaptureSession()
                 
@@ -213,12 +213,92 @@
             }
             
             
-            func disableWheel(){
-            dispatch_after( dispatch_time(DISPATCH_TIME_NOW, Int64(1 * Double(NSEC_PER_SEC))),
-            dispatch_get_main_queue(),
+            func parseJSON(data: NSData?)
             {
-                LoadingOverlay.shared.hideOverlayView()
-            })
+                
+                if data == nil{
+                    return
+                }
+                
+                do {
+                    //TODO ERROR
+                    
+                    let s = String.init(data: data!, encoding:NSUTF8StringEncoding)
+                    
+                    let resultJson : NSDictionary = try NSJSONSerialization.JSONObjectWithData(data!, options: .AllowFragments) as! NSDictionary
+                    print(resultJson)
+                    
+                    var result = resultJson["result"]
+                    
+                    let ok : Bool = (result?.boolValue)!
+                    
+                    print(ok)
+                    if ok
+                    {
+                        alertBarcode(true)
+                        
+                    }
+                    if !ok
+                    {
+                       alertBarcode(false)
+                    }
+                    }
+                        catch
+                        {
+                                print ("Json error")
+                        }
+            }    // parseJSON
+            
+            
+            
+            
+            func alertBarcode(returned : Bool)
+            {
+            
+                
+            if (returned)
+                {
+                self.enableWheel()
+                self.disabletabBar()
+                let alertController = UIAlertController(title: "Removed with success !",message: "", preferredStyle: UIAlertControllerStyle.Alert)
+                alertController.addAction(UIAlertAction(title: "ok", style: UIAlertActionStyle.Default, handler: { (action: UIAlertAction!) in
+                    self.startCapturing()
+                    
+                }))
+                self.presentViewController(alertController, animated: true, completion: nil)
+                
+                self.disableWheel()
+                self.enabletabBar()
+                }
+            if(!returned)
+            {
+                
+                self.enableWheel()
+                self.disabletabBar()
+                let alertController = UIAlertController(title: "barcode not found ! ",message: "", preferredStyle: UIAlertControllerStyle.Alert)
+                alertController.addAction(UIAlertAction(title: "ok", style: UIAlertActionStyle.Default, handler: { (action: UIAlertAction!) in
+                    self.startCapturing()
+                    
+                }))
+                self.presentViewController(alertController, animated: true, completion: nil)
+                
+                self.disableWheel()
+                self.enabletabBar()
+                
+                }
+                
+                
+            }
+            
+            
+            
+            
+            func disableWheel(){
+                dispatch_after( dispatch_time(DISPATCH_TIME_NOW, Int64(1 * Double(NSEC_PER_SEC))),
+                                dispatch_get_main_queue(),
+                                {
+                                    LoadingOverlay.shared.hideOverlayView()
+                })
             }
             
             func enabletabBar(){
@@ -249,66 +329,6 @@
                 })
                 
             }
-                
-            func parseJSON(data: NSData?)
-            {
-                
-                if data == nil{
-                    return
-                }
-                
-                do {
-                    //TODO ERROR
-                    
-                    let s = String.init(data: data!, encoding:NSUTF8StringEncoding)
-                    
-                    let resultJson : NSDictionary = try NSJSONSerialization.JSONObjectWithData(data!, options: .AllowFragments) as! NSDictionary
-                    print(resultJson)
-                    
-                    var result = resultJson["result"]
-                    
-                    let ok : Bool = (result?.boolValue)!
-                    
-                    print(ok)
-                    if ok
-                    {
-                        self.enableWheel()
-                        self.disabletabBar()
-                        let alertController = UIAlertController(title: "Action Success",message: "", preferredStyle: UIAlertControllerStyle.Alert)
-                        alertController.addAction(UIAlertAction(title: "ok", style: UIAlertActionStyle.Default, handler: { (action: UIAlertAction!) in
-                            
-                            
-                        }))
-                        self.presentViewController(alertController, animated: true, completion: nil)
-
-                        self.disableWheel()
-                        self.enabletabBar()
-                        
-                        
-                        
-                    }
-                    if !ok
-                    {
-                        self.enableWheel()
-                        self.disabletabBar()
-                        let alertController = UIAlertController(title: "Action Success",message: "", preferredStyle: UIAlertControllerStyle.Alert)
-                        alertController.addAction(UIAlertAction(title: "ok", style: UIAlertActionStyle.Default, handler: { (action: UIAlertAction!) in
-                            
-                            
-                        }))
-                        self.presentViewController(alertController, animated: true, completion: nil)
-                        
-                        self.disableWheel()
-                        self.enabletabBar()
-                    }
-                    }
-                        catch
-                        {
-                                print ("Json error")
-                        }
-            }    // parseJSON
-            
-            
             
             
             

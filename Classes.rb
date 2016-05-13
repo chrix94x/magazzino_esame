@@ -26,16 +26,7 @@
             if (count<totRows-1)
               client.puts ","
             end
-
               count = count + 1
-            #ios block here WHY?? maybe doesn't accept other puts...
-
-            #client.puts results.to_json
-
-           # msg = " #{count}\n"
-
-           # client.puts msg
-
           end
 
           client.puts "]"
@@ -132,18 +123,15 @@
 
       #message json FALSE
       def sendResultzero(client)
-        puts "sent result"
-        #client.puts "["
         client.puts "{\"result\":\"0\"}"
-        #client.puts "]"
         client.close
       end
+
+
+
       #message json TRUE
       def sendResultOne(client)
-        #client.puts "["
         client.puts "{\"result\":\"1\"}"
-        #client.puts "]"
-        puts "sent result one "
         client.close
       end
 
