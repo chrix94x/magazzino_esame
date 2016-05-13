@@ -80,14 +80,12 @@ class TCPStreamer: NSObject, NSStreamDelegate {
             let p = UnsafePointer<UInt8>(c)
             let written = self.outputStream?.write(p,maxLength:  len)
             
-            if 0 < written
+            print (written!)
+
+            if written > 0
             {
                return true
             }
-            
-            print (written)
-            
-            
         }
         return false
     }

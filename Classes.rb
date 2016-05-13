@@ -51,8 +51,9 @@
               VALUES('#{description}','#{quantity}','#{price}','#{color}','#{brand}','#{model}','#{barcode}')")
 
            if checkBarcode(con,client,barcode) then
-           client.puts "{\"message\":\"added successful\"}"
+             sendResultOne(client)
            end
+
 
             rescue Mysql2::Error => e
             sendError(client,e)
@@ -60,20 +61,20 @@
           end
 
         def remove(con,client,barcode)
-
           #check if exists the barcode
+          puts "entered in remove"
           if checkBarcode(con,client,barcode) then
              #if exist decrement quantity
              con.query("UPDATE magazzino_scorza.prodotti SET quantita=quantita-1
              where barcode='#{barcode}'")
-
+             print "cecked barcode"
              #and send message to client
-              client.puts "{\"message\":\"removed successful\"}"
+             sendResultOne(client)
           end
-
           rescue Mysql2::Error => e
           sendError(client,e)
-        end
+          end
+
 
         def removeAll(con,client,barcode)
           #check if barcode exist
@@ -81,7 +82,7 @@
             #if exist
           con.query("UPDATE magazzino_scorza.prodotti SET quantita=0
          where barcode='#{barcode}'")
-          client.puts "{\"message\":\"removed all successful\"}"
+          sendResultOne(client)
           end
 
         rescue Mysql2::Error => e
@@ -94,7 +95,7 @@
             #if exist
             con.query("delete from magazzino_scorza.prodotti
             where barcode='#{barcode}'")
-          client.puts "{\"message\":\"deleted successful\"}"
+            sendResultOne(client)
           end
 
         rescue Mysql2::Error => e
@@ -106,8 +107,7 @@
           if checkBarcode(con,client,barcode) then
             #if exist
             con.query("UPDATE magazzino_scorza.prodotti set prezzo='#{price}' where barcode='#{barcode}'")
-            client.puts "{\"message\":\"price changed successful\"}"
-
+            sendResultOne(client)
           end
 
         rescue Mysql2::Error => e
@@ -122,12 +122,31 @@
 
         #If the barcode is not in the server.
         if(result.count == 0)
-          client.puts "{\"error\":\"no barcode found\"}"
+         sendResultzero(client)
           return false
         end
 
         return true
       end
+
+
+      #message json FALSE
+      def sendResultzero(client)
+        puts "sent result"
+        #client.puts "["
+        client.puts "{\"result\":\"0\"}"
+        #client.puts "]"
+        client.close
+      end
+      #message json TRUE
+      def sendResultOne(client)
+        #client.puts "["
+        client.puts "{\"result\":\"1\"}"
+        #client.puts "]"
+        puts "sent result one "
+        client.close
+      end
+
 
 
 
@@ -200,7 +219,7 @@
 
           # call the method that analyse the json code.
           analyse(data,queryObject,con,client)
-
+          client.close
         rescue JSON::ParserError => e
           client.puts "{\"error\":\"parsejson\"}"
           sendError(client,e)

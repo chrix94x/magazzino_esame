@@ -19,8 +19,8 @@ import UIKit
 
 
 // let host = "localhost"
-let host="192.168.1.7"
-//let host="172.16.10.115"
+//let host="192.168.1.7"
+let host="172.16.10.115"
 
 
 let port : UInt32 = 2000
@@ -30,7 +30,6 @@ let port : UInt32 = 2000
 class ProductsTableViewController: UITableViewController, DataParserDelegate{
 
     var products:  [Product]?
-    let sharedInstance = TCPStreamer.sharedInstance
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -50,14 +49,13 @@ class ProductsTableViewController: UITableViewController, DataParserDelegate{
  
         products = [Product]()
 
-        var ok = self.sharedInstance.openSocketsIfNeeded(host,onPort: port, delegate:  self)
+        var ok = TCPStreamer.sharedInstance.openSocketsIfNeeded(host,onPort: port, delegate:  self)
         
-        if ok
-        {
+        if ok{
            ok = sendCommand("list")
         }
-        if !ok
-        {
+        
+        if !ok{
             alertControllerConnectionError()
         }
     }
@@ -105,14 +103,7 @@ class ProductsTableViewController: UITableViewController, DataParserDelegate{
         return cell
     }
 
-    /*
-    @IBAction func AskJson(sender: AnyObject) {
-        
-        self.sharedInstance.openSocketsIfNeeded(host,onPort: port, delegate: self)
-        sendCommand("list")
-        
-    }
-    */
+  
    
     
     func sendCommand( inputCmd: String) ->Bool  {
@@ -124,7 +115,7 @@ class ProductsTableViewController: UITableViewController, DataParserDelegate{
         
         
         //last
-        let ok = self.sharedInstance.writeToServer(cmd)
+        let ok = TCPStreamer.sharedInstance.writeToServer(cmd)
         return ok
     }
     
@@ -161,7 +152,7 @@ class ProductsTableViewController: UITableViewController, DataParserDelegate{
         {
             print ("Json error")
         }
-    }    // processJSON
+    }    // parseJSON
     
     
     

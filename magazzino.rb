@@ -36,7 +36,8 @@ loop do
     puts readString
     puts "this is the string that i recived\n "+ readString + "\n"
     processStr(readString,con,client)
-
+    puts "returned from process "
+    puts "close client"
     client.close
   end
   end
