@@ -20,9 +20,9 @@ class TCPStreamer: NSObject, NSStreamDelegate {
     private var inputStream : NSInputStream?
     private var outputStream : NSOutputStream?
     private var data : NSMutableData?
+   // private var timeoutTimer: NSTimer? // needed?
     
     private var delegate: DataParserDelegate?
-    
     
     override init () {
         super.init()
@@ -30,14 +30,28 @@ class TCPStreamer: NSObject, NSStreamDelegate {
     
     
     
+//    final func startTimeOutTimer(){
+//        self.timeoutTimer = NSTimer(timeInterval: 5,
+//                              target: self,
+//                              selector: #selector(TCPStreamer.timeOutOccurred),
+//                              userInfo: nil,
+//                              repeats: false)
+//        NSRunLoop.currentRunLoop().addTimer(self.timeoutTimer!, forMode: NSRunLoopCommonModes)
+//    }
+    
+    
     final func openSocketsIfNeeded(Host: String, onPort port: UInt32, delegate: DataParserDelegate)->Bool
     {
+        //startTimeOutTimer()
+        //return false
+        
         self.delegate = delegate
         var readStream : Unmanaged<CFReadStream>?
         var writeStream :  Unmanaged<CFWriteStream>?
         
         CFStreamCreatePairWithSocketToHost(kCFAllocatorDefault , Host, port, &readStream, &writeStream)
         
+
         
         if (readStream != nil) && (writeStream != nil  )
         {
@@ -55,7 +69,7 @@ class TCPStreamer: NSObject, NSStreamDelegate {
             
             inputStream!.open()
             outputStream!.open()
-            
+
             return true
         }
         
@@ -64,25 +78,26 @@ class TCPStreamer: NSObject, NSStreamDelegate {
     }
     
     
+    func timeOutOccurred() {
+        print("timeOutOccurred")
+    }
+    
+    
+    
     final func writeToServer(s:String)->Bool
     {
         self.outputStream?.streamStatus
-       
-        
         
         if let c = s.cStringUsingEncoding(NSUTF8StringEncoding)
         {
             let len : Int = Int (strlen(c))
             let p = UnsafePointer<UInt8>(c)
-            let written = self.outputStream?.write(p,maxLength:  len)
-            
-            print (written!)
-
-            
-            
-            if written > 0
-            {
-               return true
+            if let written = self.outputStream?.write(p,maxLength:  len){
+                print (written)
+                if written > 0
+                {
+                    return true
+                }
             }
         }
         return false
@@ -153,7 +168,11 @@ class TCPStreamer: NSObject, NSStreamDelegate {
             break
             
         case NSStreamEvent.HasBytesAvailable:
-            //TODO or better to compare with === to inputStream?
+            // kill timer...
+            
+            //self.timeoutTimer?.invalidate()
+            //self.timeoutTimer = nil
+            
             if let iStream = aStream as? NSInputStream {
                 processResponse(iStream)
             }

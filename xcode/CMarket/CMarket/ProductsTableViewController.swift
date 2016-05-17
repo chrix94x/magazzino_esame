@@ -32,13 +32,33 @@ class ProductsTableViewController: UITableViewController, DataParserDelegate{
 
     var products:  [Product]?
     
+    private var timeoutTimer: NSTimer?
+
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        startTimeOutTimer()
         loadDataFromServer()
     }
 
+    
+    final func startTimeOutTimer(){
+        self.timeoutTimer = NSTimer(timeInterval: 5,
+                                    target: self,
+                                    selector: #selector(TCPStreamer.timeOutOccurred),
+                                    userInfo: nil,
+                                    repeats: false)
+        NSRunLoop.currentRunLoop().addTimer(self.timeoutTimer!, forMode: NSRunLoopCommonModes)
+    }
 
+    
+    
+    
+    func timeOutOccurred() {
+        print("timeOutOccurred")
+    }
+    
 
     func loadDataFromServer_FAKE(){
         
