@@ -9,26 +9,32 @@
         import UIKit
         import AVFoundation
 
-        class BarcodeViewController: UIViewController, AVCaptureMetadataOutputObjectsDelegate,DataParserDelegate
+        class BarcodeViewController: UIViewController,
+            
+            
+            
+            AVCaptureMetadataOutputObjectsDelegate,DataParserDelegate
+            
+        
         {
             var captureSession: AVCaptureSession!
             var previewLayer: AVCaptureVideoPreviewLayer!
             private var data : NSMutableData?
-            
+            @IBAction func flashButton(sender: AnyObject) {
+                
+                //i have to put it over all views
+                //flash button code
+            }
 
+            
             override func viewDidLoad() {
                 
                 super.viewDidLoad()
-                /*
-                dispatch_after( dispatch_time(DISPATCH_TIME_NOW, Int64(1 * Double(NSEC_PER_SEC))),
-                    dispatch_get_main_queue(),
-                    {
-                        self.foundCode("111111")
-                    }
-                )
-         
-                return;
-                */
+                
+               
+                
+                
+                
                 view.backgroundColor = UIColor.blackColor()
                 captureSession = AVCaptureSession()
                 
@@ -65,9 +71,12 @@
                 previewLayer.videoGravity = AVLayerVideoGravityResizeAspectFill;
                 view.layer.addSublayer(previewLayer);
                 
+                
+                
                 captureSession.startRunning();
             }
             
+                      
             
             override func viewWillAppear(animated: Bool) {
                 super.viewWillAppear(animated)
@@ -95,6 +104,7 @@
             final func startCapturing(){
                 if (captureSession?.running == false) {
                     captureSession.startRunning();
+                    
                 }
             }
             
@@ -223,12 +233,12 @@
                 do {
                     //TODO ERROR
                     
-                    let s = String.init(data: data!, encoding:NSUTF8StringEncoding)
+                   // String.init(data: data!, encoding:NSUTF8StringEncoding)
                     
                     let resultJson : NSDictionary = try NSJSONSerialization.JSONObjectWithData(data!, options: .AllowFragments) as! NSDictionary
                     print(resultJson)
                     
-                    var result = resultJson["result"]
+                    let result = resultJson["result"]
                     
                     let ok : Bool = (result?.boolValue)!
                     

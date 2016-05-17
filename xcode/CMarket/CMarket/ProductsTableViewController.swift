@@ -49,10 +49,12 @@ class ProductsTableViewController: UITableViewController, DataParserDelegate{
     func loadDataFromServer(){
  
         products = [Product]()
-
+        
         TCPStreamer.sharedInstance.openSocketsIfNeeded(host,onPort: port, delegate:  self)
         
-        var ok = sendCommand("list")
+        
+        let ok = sendCommand("list")
+       
         if !ok
         {
             self.alertControllerConnectionError()
@@ -124,6 +126,7 @@ class ProductsTableViewController: UITableViewController, DataParserDelegate{
        
     func parseJSON(data: NSData?){
         if data == nil{
+            print("NO CONNECTION")
             return
         }
         

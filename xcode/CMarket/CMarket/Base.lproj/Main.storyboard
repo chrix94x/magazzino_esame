@@ -144,7 +144,7 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="name" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" highlighted="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="CVS-TU-uue">
-                                <rect key="frame" x="40" y="114" width="520" height="20"/>
+                                <rect key="frame" x="35" y="114" width="520" height="20"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="20" id="JHD-lF-ynT"/>
                                     <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="20" id="nTi-Of-pWF"/>
@@ -157,8 +157,8 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstItem="CVS-TU-uue" firstAttribute="top" secondItem="bCG-gD-xS0" secondAttribute="bottom" constant="50" id="017-V7-0YG"/>
-                            <constraint firstItem="CVS-TU-uue" firstAttribute="leading" secondItem="boN-Bu-bh2" secondAttribute="leadingMargin" constant="20" id="RRz-UE-I1P"/>
-                            <constraint firstAttribute="trailingMargin" secondItem="CVS-TU-uue" secondAttribute="trailing" constant="20" id="aJk-8r-rUF"/>
+                            <constraint firstItem="CVS-TU-uue" firstAttribute="leading" secondItem="boN-Bu-bh2" secondAttribute="leadingMargin" constant="15" id="RRz-UE-I1P"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="CVS-TU-uue" secondAttribute="trailing" constant="25" id="aJk-8r-rUF"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="Details" id="3Ql-cR-SdW"/>
@@ -184,14 +184,28 @@
                     <view key="view" contentMode="scaleToFill" id="QS5-Rx-YEW">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" highlighted="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Jh1-ak-tGn">
+                                <rect key="frame" x="531" y="28" width="51" height="31"/>
+                                <connections>
+                                    <action selector="flashButton:" destination="8rJ-Kc-sve" eventType="valueChanged" id="xho-Ts-mnX"/>
+                                </connections>
+                            </switch>
+                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="Jh1-ak-tGn" firstAttribute="trailing" secondItem="QS5-Rx-YEW" secondAttribute="trailingMargin" id="9LU-a6-IaR"/>
+                            <constraint firstItem="Jh1-ak-tGn" firstAttribute="top" secondItem="L7p-HK-0SC" secondAttribute="bottom" constant="8" id="u3r-no-pTG"/>
+                        </constraints>
                     </view>
-                    <navigationItem key="navigationItem" id="zDd-Vl-SgV"/>
+                    <toolbarItems/>
+                    <navigationItem key="navigationItem" id="gB3-G6-lY2"/>
+                    <simulatedToolbarMetrics key="simulatedBottomBarMetrics"/>
                     <simulatedOrientationMetrics key="simulatedOrientationMetrics"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="4Nw-L8-lE0" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2162" y="347"/>
+            <point key="canvasLocation" x="2154" y="219"/>
         </scene>
         <!--Tab Bar Controller-->
         <scene sceneID="yl2-sM-qoP">
@@ -226,6 +240,10 @@
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
                     <nil name="viewControllers"/>
+                    <toolbar key="toolbar" opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="mZA-j0-K6J">
+                        <rect key="frame" x="0.0" y="556" width="600" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </toolbar>
                     <connections>
                         <segue destination="8rJ-Kc-sve" kind="relationship" relationship="rootViewController" id="TJp-ML-Acz"/>
                     </connections>

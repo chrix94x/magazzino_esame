@@ -66,12 +66,8 @@ class TCPStreamer: NSObject, NSStreamDelegate {
     
     final func writeToServer(s:String)->Bool
     {
-        let status = self.outputStream?.streamStatus
+        self.outputStream?.streamStatus
        
-        if status != .Open
-        {
-        //code
-        }
         
         
         if let c = s.cStringUsingEncoding(NSUTF8StringEncoding)
@@ -82,6 +78,8 @@ class TCPStreamer: NSObject, NSStreamDelegate {
             
             print (written!)
 
+            
+            
             if written > 0
             {
                return true
