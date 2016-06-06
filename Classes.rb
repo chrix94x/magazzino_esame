@@ -37,9 +37,11 @@
 
         end
 
-          def insert(con,client,description,quantity,price,color,brand,model,barcode)
-           con.query("INSERT INTO magazzino_scorza.prodotti(descrizione,quantita,prezzo,colore,marca,modello,barcode)
-              VALUES('#{description}','#{quantity}','#{price}','#{color}','#{brand}','#{model}','#{barcode}')")
+          def insert(con,client,description,quantity,price,barcode)
+            puts "entered in insert function"
+           con.query("INSERT INTO magazzino_scorza.prodotti(descrizione,quantita,prezzo,barcode)
+              VALUES('#{description}','#{quantity}','#{price}','#{barcode}')")
+
 
            if checkBarcode(con,client,barcode) then
              sendResultOne(client)
@@ -80,12 +82,12 @@
           sendError(client,e)
         end
 
-        def deleteProduct(con,client,barcode)
+        def deleteProduct(con,client,barcode,description)
           #check if barcode exist
           if checkBarcode(con,client,barcode) then
             #if exist
             con.query("delete from magazzino_scorza.prodotti
-            where barcode='#{barcode}'")
+            where barcode='#{barcode}' and descrizione = '#{description}'")
             sendResultOne(client)
           end
 
@@ -154,14 +156,16 @@
       #puts "\nis in analyse method!"
        # puts string
 
+
+
         #ALL VARIABLES
         command = string["command"]
         description = string["description"]
         quantity = string["quantity"]
         price = string["price"]
-        color = string["color"]
-        brand = string["brand"]
-        model = string["model"]
+       # color = string["color"]
+    #    brand = string["brand"]
+     #   model = string["model"]
         barcode = string["barcode"]
 
       #puts "\n this is the command \n"
@@ -173,13 +177,17 @@
           when "list"
             c.listAll(con,client)
           when "insert"
-            c.insert(con,client,description,quantity,price,color,brand,model,barcode)
+            if description!= nil && quantity != nil && price != nil && barcode != nil then
+              c.insert(con,client,description,quantity,price,barcode)
+            else
+              sendResultzero(client)
+            end
           when "remove" #decrementQuantity
             c.remove(con,client,barcode)
           when "removeAll" #clearQuantity
             c.removeAll(con,client,barcode)
           when "delete"
-            c.deleteProduct(con,client,barcode)
+            c.deleteProduct(con,client,barcode,description)
           when "changePrice"
             c.changePrice(con,client,barcode,price)
           else

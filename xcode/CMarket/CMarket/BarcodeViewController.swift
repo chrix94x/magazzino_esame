@@ -26,6 +26,7 @@
                 //flash button code
             }
 
+        
             
             override func viewDidLoad() {
                 
@@ -35,7 +36,7 @@
                 
                 
                 
-                view.backgroundColor = UIColor.blackColor()
+                //view.backgroundColor = UIColor.blackColor()
                 captureSession = AVCaptureSession()
                 
                 let videoCaptureDevice = AVCaptureDevice.defaultDeviceWithMediaType(AVMediaTypeVideo)
@@ -143,6 +144,8 @@
                     
                 }))
                 
+                
+                
                 alertController.addAction(UIAlertAction(title: "Remove product", style: UIAlertActionStyle.Default, handler: { (action: UIAlertAction!) in
                     
                     self.startRemovingItemWithCode(code)
@@ -158,6 +161,13 @@
                 barcodeRecognized(code)
             }
             
+            
+            func startAddingItemWithCode(code: String) {
+                
+               //TODO GO TO ADDPRODUCTVIEW
+                
+                
+            }
             
             
             func startRemovingItemWithCode(code: String) {

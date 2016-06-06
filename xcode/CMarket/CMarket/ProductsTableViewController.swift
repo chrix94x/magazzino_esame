@@ -18,10 +18,11 @@ import UIKit
 
 
 
-// let host = "localhost"
-let host="192.168.1.7"
+ //let host = "localhost"
+//let host="192.168.1.5"
 //let host="172.16.10.115"
-
+//let host="172.16.0.211"
+let host="172.16.10.99"
 
 let port : UInt32 = 2000
 
@@ -33,13 +34,16 @@ class ProductsTableViewController: UITableViewController, DataParserDelegate{
     var products:  [Product]?
     
     private var timeoutTimer: NSTimer?
-
-    
+   
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        startTimeOutTimer()
+      //  startTimeOutTimer()
         loadDataFromServer()
+        
+        
+        self.refreshControl?.addTarget(self, action: "refresh:", forControlEvents: UIControlEvents.ValueChanged)
+        
     }
 
     
@@ -57,6 +61,16 @@ class ProductsTableViewController: UITableViewController, DataParserDelegate{
     
     func timeOutOccurred() {
         print("timeOutOccurred")
+    }
+    
+    func refresh(sender:AnyObject)
+    {
+        // Updating your data here...
+        
+        loadDataFromServer()
+        
+        self.tableView.reloadData()
+        self.refreshControl?.endRefreshing()
     }
     
 
@@ -93,6 +107,9 @@ class ProductsTableViewController: UITableViewController, DataParserDelegate{
     
     }
     
+    
+    
+  
     
 
     // MARK: - Table view data source

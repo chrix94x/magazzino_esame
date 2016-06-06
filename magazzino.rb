@@ -10,8 +10,9 @@ load 'Classes.rb'
 
 
 #CONNECTION WITH MYSQL AND CLIENT
-
 con = Mysql2::Client.new(:host => "localhost", :username => "root", :password => "yesyesyes")
+
+#con = Mysql2::Client.new(:host => "172.16.0.211", :username => "scorza", :password => "root")
 
 port = 2000
 server = TCPServer.new port
