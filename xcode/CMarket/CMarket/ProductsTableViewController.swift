@@ -18,11 +18,11 @@ import UIKit
 
 
 
- //let host = "localhost"
+//let host = "localhost"
 //let host="192.168.1.5"
 //let host="172.16.10.115"
-//let host="172.16.0.211"
-let host="172.16.10.99"
+let host="172.16.0.211"
+//let host="192.168.2.2"
 
 let port : UInt32 = 2000
 
@@ -42,7 +42,7 @@ class ProductsTableViewController: UITableViewController, DataParserDelegate{
         loadDataFromServer()
         
         
-        self.refreshControl?.addTarget(self, action: "refresh:", forControlEvents: UIControlEvents.ValueChanged)
+        self.refreshControl?.addTarget(self, action: #selector(ProductsTableViewController.refresh(_:)), forControlEvents: UIControlEvents.ValueChanged)
         
     }
 

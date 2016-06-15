@@ -18,8 +18,11 @@
           client.puts "["
           results.each do |results|
 
+             if (results.count==0)
+                sendResultzero(client)
+             end
 
-            #puts results.to_json
+                #puts results.to_json
 
             client.puts results.to_json
 
@@ -37,16 +40,18 @@
 
         end
 
+
           def insert(con,client,description,quantity,price,barcode)
-            puts "entered in insert function"
+            if checkBarcode(con,client,barcode) then
+              con.query("UPDATE magazzino_scorza.prodotti SET quantita=quantita+'#{quantity}' WHERE barcode='#{barcode}'")
+           else
            con.query("INSERT INTO magazzino_scorza.prodotti(descrizione,quantita,prezzo,barcode)
               VALUES('#{description}','#{quantity}','#{price}','#{barcode}')")
-
+            end
 
            if checkBarcode(con,client,barcode) then
              sendResultOne(client)
            end
-
 
             rescue Mysql2::Error => e
             sendError(client,e)
